@@ -19,7 +19,7 @@ class CartItemCard extends StatelessWidget {
     final theme = Theme.of(context);
     final item = cartItem.item;
     final dateFormat = DateFormat('MMM dd, yyyy');
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return Card(
       child: Padding(

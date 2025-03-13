@@ -166,6 +166,36 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Hiking',
                         color: Color(0xFF9C27B0),
                       ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.flashlight_on,
+                        title: 'Lighting',
+                        color: Color(0xFFFFEB3B),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.water,
+                        title: 'Hydration',
+                        color: Color(0xFF00BCD4),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.map,
+                        title: 'Navigation',
+                        color: Color(0xFF8BC34A),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.medical_services,
+                        title: 'First Aid',
+                        color: Color(0xFFF44336),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.camera_alt,
+                        title: 'Photography',
+                        color: Color(0xFF607D8B),
+                      ),
                     ],
                   ),
                 );

@@ -94,7 +94,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dateFormat = DateFormat('MMM dd, yyyy');
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(

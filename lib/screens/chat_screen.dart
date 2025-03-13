@@ -12,8 +12,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<Map<String, dynamic>> _messages = [
     {
       'isUser': false,
-      'message':
-          'Hello! Apakah ada yang bisa saya bantu?',
+      'message': 'Hello! Apakah ada yang bisa saya bantu?',
       'time': DateTime.now().subtract(const Duration(minutes: 5)),
     },
   ];
@@ -58,9 +57,11 @@ class _ChatScreenState extends State<ChatScreen> {
 
   String _getAutoResponse(String message) {
     final lowerCaseMessage = message.toLowerCase();
-    if (lowerCaseMessage.contains('tenda') || lowerCaseMessage.contains('berkemah')) {
+    if (lowerCaseMessage.contains('tenda') ||
+        lowerCaseMessage.contains('berkemah')) {
       return 'Kami memiliki berbagai macam tenda yang tersedia untuk disewa! Yang paling populer adalah Tenda Camping Premium yang dapat menampung 4 orang dengan nyaman. Apakah Anda ingin informasi lebih lanjut tentang itu?';
-    } else if (lowerCaseMessage.contains('tidur') || lowerCaseMessage.contains('kantong tidur')) {
+    } else if (lowerCaseMessage.contains('tidur') ||
+        lowerCaseMessage.contains('kantong tidur')) {
       return 'Kantong tidur kami memiliki rating untuk berbagai suhu. Untuk berkemah di musim panas, saya merekomendasikan Kantong Tidur Ultralight kami. Untuk cuaca yang lebih dingin, Anda mungkin ingin memeriksa Kantong Tidur Musim Dingin kami.';
     } else if (lowerCaseMessage.contains('harga') ||
         lowerCaseMessage.contains('biaya') ||
@@ -72,13 +73,17 @@ class _ChatScreenState extends State<ChatScreen> {
       return 'Halo! Bagaimana saya bisa membantu Anda dengan kebutuhan peralatan berkemah Anda hari ini?';
     } else if (lowerCaseMessage.contains('terima kasih')) {
       return 'Sama-sama! Jangan ragu untuk bertanya jika Anda memiliki pertanyaan lain.';
-    } else if (lowerCaseMessage.contains('kembali') || lowerCaseMessage.contains('terlambat')) {
+    } else if (lowerCaseMessage.contains('kembali') ||
+        lowerCaseMessage.contains('terlambat')) {
       return 'Untuk pengembalian, Anda dapat mengunjungi toko kami selama jam kerja atau menjadwalkan penjemputan. Pengembalian terlambat dikenakan biaya tambahan. Apakah Anda ingin saya membantu Anda menjadwalkan pengembalian?';
-    } else if (lowerCaseMessage.contains('kerusakan') || lowerCaseMessage.contains('rusak')) {
+    } else if (lowerCaseMessage.contains('kerusakan') ||
+        lowerCaseMessage.contains('rusak')) {
       return 'Jika peralatan rusak, harap beri tahu kami sesegera mungkin. Kerusakan kecil diharapkan, tetapi kerusakan signifikan mungkin dikenakan biaya perbaikan. Kami merekomendasikan mengambil foto kerusakan yang ada saat Anda menerima barang.';
-    } else if (lowerCaseMessage.contains('paket') || lowerCaseMessage.contains('bundel')) {
+    } else if (lowerCaseMessage.contains('paket') ||
+        lowerCaseMessage.contains('bundel')) {
       return 'Kami menawarkan beberapa paket berkemah yang mencakup semua yang Anda butuhkan untuk perjalanan Anda dengan harga diskon. Paket Camping Akhir Pekan kami populer untuk perjalanan singkat, sementara Bundel Camping Keluarga sangat cocok untuk kelompok yang lebih besar. Apakah Anda ingin detail tentang paket tertentu?';
-    } else if (lowerCaseMessage.contains('pengiriman') || lowerCaseMessage.contains('penjemputan')) {
+    } else if (lowerCaseMessage.contains('pengiriman') ||
+        lowerCaseMessage.contains('penjemputan')) {
       return 'Kami menawarkan opsi penjemputan di toko kami dan pengiriman. Pengiriman tersedia dalam radius 30 mil dengan biaya Rp10. Apakah Anda ingin menjadwalkan pengiriman atau penjemputan?';
     } else {
       return 'Terima kasih atas pesan Anda. Saya akan dengan senang hati membantu pertanyaan Anda. Bisakah Anda memberikan lebih banyak detail tentang peralatan berkemah yang Anda cari?';

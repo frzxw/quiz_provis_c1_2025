@@ -15,7 +15,9 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
+    final size = MediaQuery.of(context).size;
+    final isSmallScreen = size.width < 360;
 
     return GestureDetector(
       onTap: () {
@@ -26,72 +28,81 @@ class ItemCard extends StatelessWidget {
           ),
         );
       },
-      child: IntrinsicHeight(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: 500,
+          minWidth: 150,
+        ),
         child: Card(
           clipBehavior: Clip.antiAlias,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image and badges
-              Stack(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.asset(
-                      item.images[0],
-                      fit: BoxFit.cover,
+              AspectRatio(
+                aspectRatio: 1,
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Image.asset(
+                        item.images[0],
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  if (item.isPopular)
-                    Positioned(
-                      top: 8,
-                      left: 8,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.primary,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          'POPULAR',
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                    if (item.isPopular)
+                      Positioned(
+                        top: 8,
+                        left: 8,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isSmallScreen ? 6 : 8,
+                            vertical: isSmallScreen ? 2 : 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.primary,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            'POPULAR',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: isSmallScreen ? 9 : null,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  if (item.isOnSale)
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          'SALE',
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                    if (item.isOnSale)
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isSmallScreen ? 6 : 8,
+                            vertical: isSmallScreen ? 2 : 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            'SALE',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: isSmallScreen ? 9 : null,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
-
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 12.0, top: 12.0, right: 12.0),
+                padding: EdgeInsets.symmetric(
+                  horizontal: isSmallScreen ? 8.0 : 12.0,
+                  vertical: isSmallScreen ? 8.0 : 12.0,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -99,43 +110,50 @@ class ItemCard extends StatelessWidget {
                       item.name,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
+                        fontSize: isSmallScreen
+                            ? (theme.textTheme.titleMedium?.fontSize ?? 16) - 2
+                            : null,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        RatingStars(rating: item.rating),
-                        const SizedBox(width: 4),
-                        Text(
-                          '(${item.reviewCount})',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    if (item.isOnSale)
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(height: isSmallScreen ? 2 : 4),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Row(
                         children: [
+                          RatingStars(rating: item.rating),
+                          const SizedBox(width: 4),
                           Text(
-                            'Rp${numberFormat.format(item.price)}',
+                            '(${item.reviewCount})',
                             style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
-                              color: Colors.grey,
-                              fontSize: 12,
+                              color: Colors.grey.shade600,
+                              fontSize: isSmallScreen ? 10 : 12,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: isSmallScreen ? 4 : 8),
+                    if (item.isOnSale)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text(
                             'Rp${numberFormat.format(item.salePrice)}/day',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
+                              fontSize: isSmallScreen ? 12 : 14,
+                            ),
+                          ),
+                          Text(
+                            'Rp${numberFormat.format(item.price).substring(0, 3)}...',
+                            style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey,
+                              fontSize: isSmallScreen ? 10 : 12,
                             ),
                           ),
                         ],
@@ -146,6 +164,7 @@ class ItemCard extends StatelessWidget {
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
+                          fontSize: isSmallScreen ? 12 : 14,
                         ),
                       ),
                   ],

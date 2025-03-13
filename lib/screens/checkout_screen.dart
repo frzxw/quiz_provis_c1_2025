@@ -105,7 +105,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dateFormat = DateFormat('MMM dd, yyyy');
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(
@@ -203,7 +203,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                            'Rp${numberFormat.format(widget.subtotal)}',
+                          'Rp${numberFormat.format(widget.subtotal)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -217,7 +217,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                            'Rp${numberFormat.format(widget.tax)}',
+                          'Rp${numberFormat.format(widget.tax)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -231,7 +231,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                            'Rp${numberFormat.format(_deliveryFee)}',
+                          'Rp${numberFormat.format(_deliveryFee)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -247,7 +247,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                         Text(
-                            'Rp${numberFormat.format(widget.total + _deliveryFee)}',
+                          'Rp${numberFormat.format(widget.total + _deliveryFee)}',
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,
@@ -566,7 +566,7 @@ class OrderConfirmationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(

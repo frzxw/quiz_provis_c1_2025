@@ -13,7 +13,7 @@ class PromotionPackageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return Card(
       clipBehavior: Clip.antiAlias,

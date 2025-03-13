@@ -23,7 +23,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final reviews = getSampleReviews(widget.item.id);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return Scaffold(
       body: SafeArea(

@@ -17,8 +17,7 @@ class WishlistItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final numberFormat =
-        NumberFormat('#,##0.00', 'id_ID'); // Indonesia format (1.234.567,89)
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return GestureDetector(
       onTap: () {

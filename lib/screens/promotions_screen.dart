@@ -132,7 +132,7 @@ class PromotionsScreen extends StatelessWidget {
 
   Widget _buildSaleItemCard(BuildContext context, Product item) {
     final theme = Theme.of(context);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+    final numberFormat = NumberFormat('#,##0', 'id_ID');
 
     return GestureDetector(
       onTap: () {
