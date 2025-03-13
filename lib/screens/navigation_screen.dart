@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import 'promotions_screen.dart';
 import 'reviews_screen.dart';
 import 'notifications_screen.dart';
@@ -20,10 +21,6 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome Screen'),
-        centerTitle: true,
-      ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -203,6 +200,21 @@ class NavigationScreen extends StatelessWidget {
                                       builder: (context) =>
                                           const PromotionsScreen())),
                               double.infinity,
+                            ),
+                            const SizedBox(height: 12),
+                            _buildButton(
+                              context,
+                              'Aplikasi Utama',
+                              () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MainScreen())),
+                              double.infinity,
+                            ),
+                            const SizedBox(height: 10),
+                            const Text(
+                              'Catatan: Tidak ada tombol back saat masuk ke aplikasi utama, hanya bisa back via browser.',
+                              style: TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
