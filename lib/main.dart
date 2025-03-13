@@ -9,16 +9,16 @@ import 'screens/navigation_screen.dart';
 import 'widgets/bottom_navigation.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const CampingGearRentalApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CampingGearRentalApp extends StatelessWidget {
+  const CampingGearRentalApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Camping Rental',
+      title: 'Camping Gear Rental',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const NavigationScreen(),
