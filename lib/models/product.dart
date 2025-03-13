@@ -171,7 +171,7 @@ List<Map<String, dynamic>> promotionPackages = [
     'title': 'Paket Camping Akhir Pekan',
     'description':
         'Set lengkap untuk liburan akhir pekan. Termasuk tenda, sleeping bag, dan peralatan memasak.',
-    'price': 118000,
+    'price': 130500,
     'originalPrice': 145000,
     'image': 'assets/images/promo1.png',
     'items': [1, 2, 3],
@@ -181,7 +181,7 @@ List<Map<String, dynamic>> promotionPackages = [
     'title': 'Perlengkapan Hiking Esensial',
     'description':
         'Semua yang Anda butuhkan untuk hiking sehari. Termasuk ransel, tongkat trekking, dan filter air.',
-    'price': 60000,
+    'price': 60750,
     'originalPrice': 67500,
     'image': 'assets/images/promo2.png',
     'items': [5, 4],
@@ -191,7 +191,7 @@ List<Map<String, dynamic>> promotionPackages = [
     'title': 'Bundel Camping Keluarga',
     'description':
         'Sempurna untuk perjalanan keluarga. Termasuk tenda besar, 4 sleeping bag, set peralatan masak, dan lampu.',
-    'price': 180000,
+    'price': 177750,
     'originalPrice': 197500,
     'image': 'assets/images/promo3.png',
     'items': [1, 2, 3, 4, 6],
