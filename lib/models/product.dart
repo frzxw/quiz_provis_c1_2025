@@ -165,8 +165,9 @@ List<Product> sampleItems = [
   ),
   Product(
     id: 7,
-    name: 'Carrier',
-    description: 'Tas nyaman dengan kapasitas 50L. Sempurna untuk perjalanan hiking dan camping.',
+    name: 'Carrier 50L - Tas Hiking',
+    description:
+        'Tas nyaman dengan kapasitas 50L. Sempurna untuk perjalanan hiking dan camping, dilengkapi tali pengikat dan kantong samping.',
     price: 100000,
     rating: 4.5,
     reviewCount: 94,
@@ -187,7 +188,7 @@ List<Product> sampleItems = [
   ),
   Product(
     id: 8,
-    name: 'Matras',
+    name: 'Matras Camping - Waterproof',
     description:
         'Matras dengan bahan nyaman dan tahan air. Sempurna untuk tidur nyenyak di lokasi camping Anda.',
     price: 25000,
@@ -206,9 +207,10 @@ List<Product> sampleItems = [
     isAvailable: true,
   ),
   Product(
-    id:9,
-    name: 'Jaket Gunung',
-    description: 'Jaket gunung yang tahan air dan tahan angin. Sempurna untuk perjalanan hiking dan camping.',
+    id: 9,
+    name: 'Jaket Gunung - Waterproof & Windproof',
+    description:
+        'Jaket gunung yang tahan air dan tahan angin. Cocok untuk perjalanan hiking dan camping di berbagai cuaca.',
     price: 100000,
     rating: 4.5,
     reviewCount: 94,
@@ -219,7 +221,7 @@ List<Product> sampleItems = [
     specifications: {
       'Bahan': 'Polyester',
       'Berat': '0.8 kg',
-      'Dimensi': 'S, M, L, XL',
+      'Ukuran': 'S, M, L, XL',
       'Fitur': 'Tahan air, Tahan angin',
     },
     isAvailable: true,
@@ -228,8 +230,9 @@ List<Product> sampleItems = [
   ),
   Product(
     id: 10,
-    name: 'Sepatu hiking',
-    description: 'Sepatu hiking yang nyaman dan tahan air. Sempurna untuk perjalanan hiking dan camping.',
+    name: 'Sepatu Hiking - Anti Slip & Waterproof',
+    description:
+        'Sepatu hiking yang nyaman dan tahan air. Didesain dengan sol anti-slip untuk perjalanan hiking dan camping yang lebih aman.',
     price: 150000,
     rating: 4.5,
     reviewCount: 94,
@@ -240,15 +243,16 @@ List<Product> sampleItems = [
     specifications: {
       'Bahan': 'Kulit, Karet',
       'Berat': '1.2 kg',
-      'Dimensi': '39, 40, 41, 42',
-      'Fitur': 'Tahan air, Nyaman',
+      'Ukuran': '39, 40, 41, 42',
+      'Fitur': 'Tahan air, Nyaman, Anti-slip',
     },
     isAvailable: true,
   ),
   Product(
     id: 11,
-    name: 'Topi',
-    description: 'Topi yang nyaman dan tahan air. Sempurna untuk perjalanan hiking dan camping.',
+    name: 'Topi Outdoor - UV Protection',
+    description:
+        'Topi yang nyaman dan tahan air. Dilengkapi perlindungan UV untuk perjalanan hiking dan camping.',
     price: 50000,
     rating: 4.5,
     reviewCount: 94,
@@ -259,15 +263,16 @@ List<Product> sampleItems = [
     specifications: {
       'Bahan': 'Kain',
       'Berat': '0.2 kg',
-      'Dimensi': 'M, L',
-      'Fitur': 'Tahan air, Nyaman',
+      'Ukuran': 'M, L',
+      'Fitur': 'Tahan air, Nyaman, Perlindungan UV',
     },
     isAvailable: true,
   ),
   Product(
     id: 12,
-    name: 'Kacamata',
-    description: 'Kacamata yang nyaman dan tahan air. Sempurna untuk perjalanan hiking dan camping.',
+    name: 'Kacamata Outdoor - Anti Silau & Tahan Air',
+    description:
+        'Kacamata dengan desain stylish dan lensa anti silau. Cocok untuk perjalanan hiking dan camping.',
     price: 50000,
     rating: 4.5,
     reviewCount: 94,
@@ -278,13 +283,12 @@ List<Product> sampleItems = [
     specifications: {
       'Bahan': 'Plastik',
       'Berat': '0.1 kg',
-      'Dimensi': 'M, L',
-      'Fitur': 'Tahan air, Nyaman',
+      'Ukuran': 'M, L',
+      'Fitur': 'Tahan air, Nyaman, Anti silau',
     },
     isAvailable: true,
     isPopular: true,
   ),
-
 ];
 
 List<Map<String, dynamic>> promotionPackages = [

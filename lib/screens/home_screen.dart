@@ -246,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Responsive promotion card height
                 final promotionHeight = size.width * 0.45;
                 return SizedBox(
-                  height: promotionHeight.clamp(180.0, 300.0),
+                  height: promotionHeight.clamp(300.0, 300.0),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding:
@@ -287,9 +287,9 @@ class _HomeScreenState extends State<HomeScreen> {
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: gridColumns,
-                  childAspectRatio: itemAspectRatio,
-                  crossAxisSpacing: horizontalPadding * 0.8,
-                  mainAxisSpacing: horizontalPadding * 0.8,
+                  childAspectRatio: itemAspectRatio.clamp(0.5, 1.0),
+                  crossAxisSpacing: horizontalPadding * 0.4,
+                  mainAxisSpacing: horizontalPadding * 0.4,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {

@@ -13,27 +13,27 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       textTheme: TextTheme(
         displayLarge: GoogleFonts.poppins(
-          fontSize: 24,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
           color: Colors.black87,
         ),
         displayMedium: GoogleFonts.poppins(
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.black87,
         ),
         bodyLarge: GoogleFonts.inter(
-          fontSize: 16,
+          fontSize: 12,
           fontWeight: FontWeight.w400,
           color: Colors.black87,
         ),
         bodyMedium: GoogleFonts.inter(
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: FontWeight.w400,
           color: Colors.black87,
         ),
         labelLarge: GoogleFonts.montserrat(
-          fontSize: 16,
+          fontSize: 12,
           fontWeight: FontWeight.w600,
           color: Colors.white,
         ),

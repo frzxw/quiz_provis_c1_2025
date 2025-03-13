@@ -31,7 +31,7 @@ class ItemCard extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: 500,
-          minWidth: 150,
+          minWidth: 300,
         ),
         child: Card(
           clipBehavior: Clip.antiAlias,
@@ -114,7 +114,7 @@ class ItemCard extends StatelessWidget {
                             ? (theme.textTheme.titleMedium?.fontSize ?? 16) - 2
                             : null,
                       ),
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: isSmallScreen ? 2 : 4),
@@ -138,7 +138,7 @@ class ItemCard extends StatelessWidget {
                     SizedBox(height: isSmallScreen ? 4 : 8),
                     if (item.isOnSale)
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             'Rp${numberFormat.format(item.salePrice)}/day',
@@ -148,12 +148,16 @@ class ItemCard extends StatelessWidget {
                               fontSize: isSmallScreen ? 12 : 14,
                             ),
                           ),
-                          Text(
-                            'Rp${numberFormat.format(item.price).substring(0, 3)}...',
-                            style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
-                              color: Colors.grey,
-                              fontSize: isSmallScreen ? 10 : 12,
+                          SizedBox(width: isSmallScreen ? 4 : 8),
+                          Flexible(
+                            child: Text(
+                              'Rp${numberFormat.format(item.price)}',
+                              style: TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                                color: Colors.grey,
+                                fontSize: isSmallScreen ? 10 : 12,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],

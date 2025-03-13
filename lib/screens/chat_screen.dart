@@ -36,7 +36,6 @@ class _ChatScreenState extends State<ChatScreen> {
       });
     });
 
-    // Simulate admin response after a short delay
     Future.delayed(const Duration(seconds: 1), () {
       if (!mounted) return;
 
@@ -105,56 +104,74 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final bool isSmallScreen = size.width < 360;
+    final double avatarSize = isSmallScreen ? 28.0 : 36.0;
+    final double horizontalPadding = size.width < 600 ? 12.0 : 16.0;
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: isSmallScreen ? 60 : null,
+        leadingWidth: isSmallScreen ? 30 : 40,
         title: Row(
           children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/admin.png'),
+            CircleAvatar(
+              backgroundImage: const AssetImage('assets/images/admin.png'),
+              radius: isSmallScreen ? 16 : 18,
             ),
-            const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Camping Expert'),
-                Text(
-                  'Usually responds within 10 minutes',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.grey.shade600,
+            SizedBox(width: isSmallScreen ? 8 : 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Camping Expert',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontSize: isSmallScreen ? 15 : 16,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
+                  Text(
+                    'Usually responds within 10 minutes',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: Colors.grey.shade600,
+                      fontSize: isSmallScreen ? 10 : 12,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.info_outline),
+            icon: Icon(Icons.info_outline, size: isSmallScreen ? 22 : 24),
             onPressed: () {
-              // Show info about chat
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
                   title: const Text('About Customer Support'),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Our customer support is available:',
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      const SizedBox(height: 8),
-                      Text('• Monday to Friday: 9 AM - 8 PM'),
-                      Text('• Saturday: 10 AM - 6 PM'),
-                      Text('• Sunday: 12 PM - 5 PM'),
-                      const SizedBox(height: 16),
-                      Text(
-                        'For urgent matters outside these hours, please email us at support@campingrental.com',
-                        style: theme.textTheme.bodyMedium,
-                      ),
-                    ],
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Our customer support is available:',
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                        const SizedBox(height: 8),
+                        Text('• Monday to Friday: 9 AM - 8 PM'),
+                        Text('• Saturday: 10 AM - 6 PM'),
+                        Text('• Sunday: 12 PM - 5 PM'),
+                        const SizedBox(height: 16),
+                        Text(
+                          'For urgent matters outside these hours, please email us at support@campingrental.com',
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
                   ),
                   actions: [
                     TextButton(
@@ -170,40 +187,50 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
-          // Chat messages
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: isSmallScreen ? 12 : 16,
+              ),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
-                return _buildMessageBubble(message, theme);
+                return _buildMessageBubble(message, theme, isSmallScreen);
               },
             ),
           ),
-
-          // Quick Responses
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: isSmallScreen ? 6 : 8,
+            ),
             color: Colors.grey.shade100,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _buildQuickResponseChip('Bagaimana Cara saya mengembalikan barang?'),
-                  _buildQuickResponseChip('Ada bundle apa saja ya yang tersedia?'),
-                  _buildQuickResponseChip('Bagaimana cara pemesanan?'),
-                  _buildQuickResponseChip('Ada paket camping keluarga?'),
-                  _buildQuickResponseChip('Berapa harga sewa tenda?'),
+                  _buildQuickResponseChip(
+                      'Bagaimana Cara saya mengembalikan barang?',
+                      isSmallScreen),
+                  _buildQuickResponseChip(
+                      'Ada bundle apa saja ya yang tersedia?', isSmallScreen),
+                  _buildQuickResponseChip(
+                      'Bagaimana cara pemesanan?', isSmallScreen),
+                  _buildQuickResponseChip(
+                      'Ada paket camping keluarga?', isSmallScreen),
+                  _buildQuickResponseChip(
+                      'Berapa harga sewa tenda?', isSmallScreen),
                 ],
               ),
             ),
           ),
-
-          // Input area
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: isSmallScreen ? 12 : 16,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -217,13 +244,14 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.attach_file),
+                  icon: Icon(Icons.attach_file, size: isSmallScreen ? 22 : 24),
+                  padding: EdgeInsets.all(isSmallScreen ? 8 : 12),
+                  constraints: const BoxConstraints(),
                   onPressed: () {
-                    // Show attachment options
                     showModalBottomSheet(
                       context: context,
                       builder: (context) => Container(
-                        padding: const EdgeInsets.all(16),
+                        padding: EdgeInsets.all(horizontalPadding),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -275,31 +303,41 @@ class _ChatScreenState extends State<ChatScreen> {
                     );
                   },
                 ),
+                SizedBox(width: isSmallScreen ? 4 : 8),
                 Expanded(
                   child: TextField(
                     controller: _messageController,
+                    style: TextStyle(fontSize: isSmallScreen ? 14 : 16),
                     decoration: InputDecoration(
                       hintText: 'Type a message...',
+                      hintStyle: TextStyle(fontSize: isSmallScreen ? 14 : 16),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(24),
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
                       fillColor: Colors.grey.shade100,
-                      contentPadding: const EdgeInsets.symmetric(
+                      isDense: isSmallScreen,
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 16,
-                        vertical: 8,
+                        vertical: isSmallScreen ? 6 : 8,
                       ),
                     ),
                     textInputAction: TextInputAction.send,
                     onSubmitted: (_) => _sendMessage(),
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: isSmallScreen ? 4 : 8),
                 CircleAvatar(
+                  radius: isSmallScreen ? 16 : 20,
                   backgroundColor: theme.colorScheme.primary,
                   child: IconButton(
-                    icon: const Icon(Icons.send, color: Colors.white),
+                    padding: EdgeInsets.zero,
+                    icon: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                      size: isSmallScreen ? 16 : 20,
+                    ),
                     onPressed: _sendMessage,
                   ),
                 ),
@@ -311,11 +349,16 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _buildQuickResponseChip(String text) {
+  Widget _buildQuickResponseChip(String text, bool isSmallScreen) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: EdgeInsets.only(right: isSmallScreen ? 6.0 : 8.0),
       child: ActionChip(
-        label: Text(text),
+        label: Text(
+          text,
+          style: TextStyle(fontSize: isSmallScreen ? 11 : 13),
+          overflow: TextOverflow.ellipsis,
+        ),
+        padding: EdgeInsets.all(isSmallScreen ? 4 : 8),
         onPressed: () {
           _messageController.text = text;
           _sendMessage();
@@ -324,26 +367,35 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _buildMessageBubble(Map<String, dynamic> message, ThemeData theme) {
+  Widget _buildMessageBubble(
+      Map<String, dynamic> message, ThemeData theme, bool isSmallScreen) {
     final isUser = message['isUser'] as bool;
+    final double avatarRadius = isSmallScreen ? 14 : 16;
+    final double fontSize = isSmallScreen ? 13 : 14;
+    final double timeSize = isSmallScreen ? 9 : 10;
+    final double bubblePaddingH = isSmallScreen ? 12 : 16;
+    final double bubblePaddingV = isSmallScreen ? 10 : 12;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: EdgeInsets.only(bottom: isSmallScreen ? 12.0 : 16.0),
       child: Row(
         mainAxisAlignment:
             isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isUser) ...[
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/admin.jpg'),
-              radius: 16,
+            CircleAvatar(
+              backgroundImage: const AssetImage('assets/images/admin.jpg'),
+              radius: avatarRadius,
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: isSmallScreen ? 6 : 8),
           ],
           Flexible(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: EdgeInsets.symmetric(
+                horizontal: bubblePaddingH,
+                vertical: bubblePaddingV,
+              ),
               decoration: BoxDecoration(
                 color: isUser ? theme.colorScheme.primary : Colors.white,
                 borderRadius: BorderRadius.circular(16).copyWith(
@@ -369,23 +421,24 @@ class _ChatScreenState extends State<ChatScreen> {
                     message['message'] as String,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: isUser ? Colors.white : Colors.black87,
+                      fontSize: fontSize,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: isSmallScreen ? 2 : 4),
                   Text(
                     _formatTime(message['time'] as DateTime),
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: isUser
                           ? Colors.white.withOpacity(0.7)
                           : Colors.grey.shade600,
-                      fontSize: 10,
+                      fontSize: timeSize,
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          if (isUser) const SizedBox(width: 8),
+          if (isUser) SizedBox(width: isSmallScreen ? 6 : 8),
         ],
       ),
     );

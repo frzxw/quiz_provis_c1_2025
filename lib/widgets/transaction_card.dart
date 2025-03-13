@@ -16,10 +16,58 @@ class TransactionCard extends StatelessWidget {
     final theme = Theme.of(context);
     final dateFormat = DateFormat('MMM dd, yyyy');
     final numberFormat = NumberFormat('#,##0', 'id_ID');
+    final size = MediaQuery.of(context).size;
+
+    final bool isSmallScreen = size.width < 360;
+    final bool isTabletOrLarger = size.width >= 600;
+
+    final double padding =
+        isSmallScreen ? 12.0 : (isTabletOrLarger ? 20.0 : 16.0);
+    final double spacing =
+        isSmallScreen ? 6.0 : (isTabletOrLarger ? 12.0 : 8.0);
+    final double spacingLarge =
+        isSmallScreen ? 12.0 : (isTabletOrLarger ? 24.0 : 16.0);
+    final double imageSize =
+        isSmallScreen ? 50.0 : (isTabletOrLarger ? 80.0 : 60.0);
+
+    final double titleFontSize =
+        isSmallScreen ? 14.0 : (isTabletOrLarger ? 18.0 : 16.0);
+    final double bodyFontSize =
+        isSmallScreen ? 12.0 : (isTabletOrLarger ? 16.0 : 14.0);
+    final double smallFontSize =
+        isSmallScreen ? 10.0 : (isTabletOrLarger ? 14.0 : 12.0);
+
+    final titleStyle = theme.textTheme.titleMedium?.copyWith(
+      fontWeight: FontWeight.bold,
+      fontSize: titleFontSize,
+    );
+
+    final bodyStyle = theme.textTheme.bodyMedium?.copyWith(
+      fontWeight: FontWeight.w500,
+      fontSize: bodyFontSize,
+    );
+
+    final captionStyle = theme.textTheme.bodySmall?.copyWith(
+      color: Colors.grey.shade600,
+      fontSize: smallFontSize,
+    );
+
+    final priceStyle = TextStyle(
+      color: Colors.grey.shade600,
+      fontSize: smallFontSize,
+    );
 
     return Card(
+      margin: EdgeInsets.symmetric(
+        vertical: isSmallScreen ? 6.0 : 8.0,
+        horizontal: isSmallScreen ? 0.0 : 4.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(isSmallScreen ? 8.0 : 12.0),
+      ),
+      elevation: isSmallScreen ? 1.0 : 2.0,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(padding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,112 +75,126 @@ class TransactionCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Order #${transaction.transactionCode}',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    'Order #${transaction.transactionCode}',
+                    style: titleStyle,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                _buildStatusBadge(context, transaction.status),
+                _buildStatusBadge(context, transaction.status, isSmallScreen),
               ],
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: spacing),
             Text(
               'Created on ${dateFormat.format(transaction.createdAt)}',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: Colors.grey.shade600,
-              ),
+              style: captionStyle,
+              overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: spacingLarge),
 
             // Rental period
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(isSmallScreen ? 8.0 : 12.0),
               decoration: BoxDecoration(
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.date_range, color: Colors.grey),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Rental Period',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: Colors.grey.shade600,
+                  Icon(
+                    Icons.date_range,
+                    color: Colors.grey,
+                    size:
+                        isSmallScreen ? 18.0 : (isTabletOrLarger ? 24.0 : 20.0),
+                  ),
+                  SizedBox(width: isSmallScreen ? 8.0 : 12.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Rental Period',
+                          style: captionStyle,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      Text(
-                        '${dateFormat.format(transaction.rentalStart)} - ${dateFormat.format(transaction.rentalEnd)}',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
+                        Text(
+                          '${dateFormat.format(transaction.rentalStart)} - ${dateFormat.format(transaction.rentalEnd)}',
+                          style: bodyStyle,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: spacingLarge),
 
             // Items
             Text(
               'Items',
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+              style: titleStyle,
+              overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 8),
-            ...transaction.items.map((item) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          item.item.images[0],
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              item.item.name,
-                              style: theme.textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
+            SizedBox(height: spacing),
+            ...transaction.items
+                .map((item) => Padding(
+                      padding: EdgeInsets.only(bottom: spacing),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                isSmallScreen ? 6.0 : 8.0),
+                            child: Image.asset(
+                              item.item.images[0],
+                              width: imageSize,
+                              height: imageSize,
+                              fit: BoxFit.cover,
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '${item.quantity} x Rp${numberFormat.format(item.item.isOnSale ? item.item.salePrice : item.item.price)}/day',
-                              style: TextStyle(
-                                color: Colors.grey.shade600,
-                                fontSize: 12,
-                              ),
+                          ),
+                          SizedBox(width: isSmallScreen ? 8.0 : 12.0),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item.item.name,
+                                  style: theme.textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: bodyFontSize,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                                SizedBox(height: isSmallScreen ? 2.0 : 4.0),
+                                Text(
+                                  '${item.quantity} x Rp${numberFormat.format(item.item.isOnSale ? item.item.salePrice : item.item.price)}/day',
+                                  style: priceStyle,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(width: spacing),
+                          Text(
+                            'Rp${numberFormat.format(item.totalPrice)}',
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: bodyFontSize,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Rp${numberFormat.format(item.totalPrice)}',
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
+                    ))
+                .toList(),
 
-            const Divider(height: 24),
+            Divider(
+              height: isSmallScreen ? 20.0 : 24.0,
+              thickness: isSmallScreen ? 0.8 : 1.0,
+            ),
 
             // Total
             Row(
@@ -140,21 +202,20 @@ class TransactionCard extends StatelessWidget {
               children: [
                 Text(
                   'Total',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: titleStyle,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   'Rp${numberFormat.format(transaction.totalAmount)}',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                  style: titleStyle?.copyWith(
                     color: theme.colorScheme.primary,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
 
-            const SizedBox(height: 16),
+            SizedBox(height: spacingLarge),
 
             // Action buttons
             if (transaction.status == TransactionStatus.confirmed)
@@ -168,17 +229,33 @@ class TransactionCard extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.red,
                         side: const BorderSide(color: Colors.red),
+                        padding: EdgeInsets.symmetric(
+                          vertical: isSmallScreen ? 8.0 : 12.0,
+                        ),
                       ),
-                      child: const Text('Cancel Order'),
+                      child: Text(
+                        'Cancel Order',
+                        style: TextStyle(fontSize: bodyFontSize),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: spacing),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
                         // View details
                       },
-                      child: const Text('View Details'),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          vertical: isSmallScreen ? 8.0 : 12.0,
+                        ),
+                      ),
+                      child: Text(
+                        'View Details',
+                        style: TextStyle(fontSize: bodyFontSize),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                 ],
@@ -197,7 +274,18 @@ class TransactionCard extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text('Return Items'),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      vertical: isSmallScreen
+                          ? 10.0
+                          : (isTabletOrLarger ? 16.0 : 14.0),
+                    ),
+                  ),
+                  child: Text(
+                    'Return Items',
+                    style: TextStyle(fontSize: bodyFontSize),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               )
             else
@@ -207,7 +295,18 @@ class TransactionCard extends StatelessWidget {
                   onPressed: () {
                     // View details
                   },
-                  child: const Text('View Details'),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      vertical: isSmallScreen
+                          ? 10.0
+                          : (isTabletOrLarger ? 16.0 : 14.0),
+                    ),
+                  ),
+                  child: Text(
+                    'View Details',
+                    style: TextStyle(fontSize: bodyFontSize),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
           ],
@@ -216,7 +315,8 @@ class TransactionCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStatusBadge(BuildContext context, TransactionStatus status) {
+  Widget _buildStatusBadge(
+      BuildContext context, TransactionStatus status, bool isSmallScreen) {
     Color color;
     String text;
 
@@ -248,7 +348,10 @@ class TransactionCard extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: EdgeInsets.symmetric(
+        horizontal: isSmallScreen ? 8.0 : 12.0,
+        vertical: isSmallScreen ? 4.0 : 6.0,
+      ),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(16),
@@ -259,8 +362,9 @@ class TransactionCard extends StatelessWidget {
         style: TextStyle(
           color: color,
           fontWeight: FontWeight.bold,
-          fontSize: 12,
+          fontSize: isSmallScreen ? 10.0 : 12.0,
         ),
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

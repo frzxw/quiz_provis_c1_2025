@@ -76,52 +76,105 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final numberFormat = NumberFormat('#,##0', 'id_ID');
+    final size = MediaQuery.of(context).size;
+
+    final bool isSmallScreen = size.width < 360;
+    final bool isTabletOrLarger = size.width >= 600;
+
+    // Calculate responsive padding based on screen size
+    final double horizontalPadding =
+        isTabletOrLarger ? size.width * 0.05 : (isSmallScreen ? 12.0 : 16.0);
+
+    // Calculate responsive font sizes
+    final double titleFontSize =
+        isSmallScreen ? 16.0 : (isTabletOrLarger ? 20.0 : 18.0);
+    final double bodyFontSize =
+        isSmallScreen ? 12.0 : (isTabletOrLarger ? 16.0 : 14.0);
+    final double summaryTitleSize =
+        isSmallScreen ? 15.0 : (isTabletOrLarger ? 19.0 : 17.0);
+
+    // Create responsive text styles
+    final TextStyle titleStyle = theme.textTheme.titleLarge!.copyWith(
+      fontSize: titleFontSize,
+      fontWeight: FontWeight.bold,
+    );
+
+    final TextStyle bodyStyle = theme.textTheme.bodyLarge!.copyWith(
+      fontSize: bodyFontSize,
+    );
+
+    final TextStyle summaryTitleStyle = theme.textTheme.titleLarge!.copyWith(
+      fontSize: summaryTitleSize,
+      fontWeight: FontWeight.bold,
+    );
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Cart'),
+        title: Text(
+          'My Cart',
+          style: TextStyle(fontSize: isSmallScreen ? 18 : 20),
+        ),
       ),
       body: _cartItems.isEmpty
           ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.shopping_cart_outlined,
-                    size: 80,
-                    color: Colors.grey.shade400,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Your cart is empty',
-                    style: theme.textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Add some camping gear to your cart',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey.shade600,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: horizontalPadding,
+                  vertical: 20,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.shopping_cart_outlined,
+                      size: isSmallScreen ? 60 : 80,
+                      color: Colors.grey.shade400,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 24),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                    },
-                    child: const Text('Browse Items'),
-                  ),
-                ],
+                    SizedBox(height: isSmallScreen ? 12 : 16),
+                    Text(
+                      'Your cart is empty',
+                      style: titleStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: isSmallScreen ? 6 : 8),
+                    Text(
+                      'Add some camping gear to your cart',
+                      style: TextStyle(
+                        fontSize: bodyFontSize,
+                        color: Colors.grey.shade600,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: isSmallScreen ? 20 : 24),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isSmallScreen ? 16 : 24,
+                          vertical: isSmallScreen ? 12 : 16,
+                        ),
+                      ),
+                      child: Text(
+                        'Browse Items',
+                        style: TextStyle(fontSize: bodyFontSize),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           : Column(
               children: [
                 Expanded(
                   child: ListView.separated(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(horizontalPadding),
                     itemCount: _cartItems.length,
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 16),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: isSmallScreen ? 12 : 16,
+                    ),
                     itemBuilder: (context, index) {
                       final item = _cartItems[index];
                       return CartItemCard(
@@ -134,7 +187,10 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalPadding,
+                    vertical: isSmallScreen ? 12 : 16,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -150,66 +206,76 @@ class _CartScreenState extends State<CartScreen> {
                     children: [
                       Text(
                         'Order Summary',
-                        style: theme.textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: summaryTitleStyle,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: isSmallScreen ? 12 : 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Subtotal',
-                            style: theme.textTheme.bodyLarge,
+                            style: bodyStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             'Rp${numberFormat.format(_subtotal)}',
-                            style: theme.textTheme.bodyLarge,
+                            style: bodyStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: isSmallScreen ? 6 : 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Tax (11%)',
-                            style: theme.textTheme.bodyLarge,
+                            style: bodyStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             'Rp${numberFormat.format(_tax)}',
-                            style: theme.textTheme.bodyLarge,
+                            style: bodyStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
-                      const Divider(height: 24),
+                      Divider(height: isSmallScreen ? 20 : 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Total',
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: summaryTitleStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             'Rp${numberFormat.format(_total)}',
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
+                            style: summaryTitleStyle.copyWith(
                               color: theme.colorScheme.primary,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: isSmallScreen ? 12 : 16),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: _proceedToCheckout,
                           style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            padding: EdgeInsets.symmetric(
+                              vertical: isSmallScreen ? 12 : 16,
+                            ),
                           ),
-                          child: const Text('Proceed to Checkout'),
+                          child: Text(
+                            'Proceed to Checkout',
+                            style: TextStyle(
+                              fontSize: isSmallScreen ? 14 : 16,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ],

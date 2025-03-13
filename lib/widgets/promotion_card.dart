@@ -43,9 +43,9 @@ class PromotionCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image
+            // Image - reduced height
             SizedBox(
-              height: 160,
+              height: 120, // Reduced from 160 to 120
               width: double.infinity,
               child: Stack(
                 fit: StackFit.expand,
@@ -91,10 +91,10 @@ class PromotionCard extends StatelessWidget {
               ),
             ),
 
-            // Content
+            // Content - expanded
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(16.0), // Increased padding
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -106,18 +106,20 @@ class PromotionCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 8), // Increased spacing
                     Expanded(
                       child: Text(
                         promotion['description'] as String,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: Colors.grey.shade600,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          // Changed to bodyMedium for larger text
+                          color: Colors.grey
+                              .shade700, // Slightly darker for better readability
                         ),
-                        maxLines: 2,
+                        maxLines: 4, // Increased to show more text
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12), // Increased spacing
                     Row(
                       children: [
                         Flexible(
