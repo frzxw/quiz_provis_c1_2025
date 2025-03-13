@@ -33,7 +33,6 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(

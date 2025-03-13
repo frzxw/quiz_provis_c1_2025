@@ -3,7 +3,6 @@ import '../models/product.dart';
 import '../widgets/category_card.dart';
 import '../widgets/item_card.dart';
 import '../widgets/promotion_card.dart';
-import 'chat_screen.dart';
 import 'promotions_screen.dart';
 
 class HomeScreen extends StatefulWidget {

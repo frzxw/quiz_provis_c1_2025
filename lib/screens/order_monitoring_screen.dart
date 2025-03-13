@@ -325,7 +325,6 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
 
   Widget _buildOrderTimeline(BuildContext context) {
     final theme = Theme.of(context);
-    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     final List<Map<String, dynamic>> steps = [
       {
