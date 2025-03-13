@@ -39,9 +39,9 @@ List<Product> sampleItems = [
     rating: 4.7,
     reviewCount: 128,
     images: [
-      'assets/images/tent1.jpg',
-      'assets/images/tent2.jpg',
-      'assets/images/tent3.jpg',
+      'assets/images/tent1.png',
+      'assets/images/tent2.png',
+      'assets/images/tent3.png',
     ],
     specifications: {
       'Kapasitas': '4 Orang',
@@ -62,8 +62,8 @@ List<Product> sampleItems = [
     rating: 4.5,
     reviewCount: 94,
     images: [
-      'assets/images/sleeping_bag1.jpg',
-      'assets/images/sleeping_bag2.jpg',
+      'assets/images/sleeping_bag1.png',
+      'assets/images/sleeping_bag2.png',
     ],
     specifications: {
       'Rating Suhu': '5°C',
@@ -85,8 +85,8 @@ List<Product> sampleItems = [
     rating: 4.3,
     reviewCount: 76,
     images: [
-      'assets/images/stove1.jpg',
-      'assets/images/stove2.jpg',
+      'assets/images/stove1.png',
+      'assets/images/stove2.png',
     ],
     specifications: {
       'Jenis Bahan Bakar': 'Butana/Propana',
@@ -106,8 +106,8 @@ List<Product> sampleItems = [
     rating: 4.6,
     reviewCount: 112,
     images: [
-      'assets/images/lantern1.jpg',
-      'assets/images/lantern2.jpg',
+      'assets/images/lantern1.png',
+      'assets/images/lantern2.png',
     ],
     specifications: {
       'Kecerahan': '300 lumens',
@@ -128,8 +128,8 @@ List<Product> sampleItems = [
     rating: 4.4,
     reviewCount: 68,
     images: [
-      'assets/images/poles1.jpg',
-      'assets/images/poles2.jpg',
+      'assets/images/poles1.png',
+      'assets/images/poles2.png',
     ],
     specifications: {
       'Bahan': 'Aluminium',
@@ -149,8 +149,8 @@ List<Product> sampleItems = [
     rating: 4.2,
     reviewCount: 85,
     images: [
-      'assets/images/chair1.jpg',
-      'assets/images/chair2.jpg',
+      'assets/images/chair1.png',
+      'assets/images/chair2.png',
     ],
     specifications: {
       'Kapasitas Berat': '120 kg',
@@ -173,7 +173,7 @@ List<Map<String, dynamic>> promotionPackages = [
         'Set lengkap untuk liburan akhir pekan. Termasuk tenda, sleeping bag, dan peralatan memasak.',
     'price': 1100000,
     'originalPrice': 1350000,
-    'image': 'assets/images/promo1.jpg',
+    'image': 'assets/images/promo1.png',
     'items': [1, 2, 3],
   },
   {
@@ -183,7 +183,7 @@ List<Map<String, dynamic>> promotionPackages = [
         'Semua yang Anda butuhkan untuk hiking sehari. Termasuk ransel, tongkat trekking, dan filter air.',
     'price': 650000,
     'originalPrice': 850000,
-    'image': 'assets/images/promo2.jpg',
+    'image': 'assets/images/promo2.png',
     'items': [5, 4],
   },
   {
@@ -193,7 +193,7 @@ List<Map<String, dynamic>> promotionPackages = [
         'Sempurna untuk perjalanan keluarga. Termasuk tenda besar, 4 sleeping bag, set peralatan masak, dan lampu.',
     'price': 1750000,
     'originalPrice': 2100000,
-    'image': 'assets/images/promo3.jpg',
+    'image': 'assets/images/promo3.png',
     'items': [1, 2, 3, 4, 6],
   },
 ];
