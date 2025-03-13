@@ -1,17 +1,395 @@
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
   @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final TextEditingController _messageController = TextEditingController();
+  final List<Map<String, dynamic>> _messages = [
+    {
+      'isUser': false,
+      'message':
+          'Hello! How can I help you with your camping equipment needs today?',
+      'time': DateTime.now().subtract(const Duration(minutes: 5)),
+    },
+  ];
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _sendMessage() {
+    if (_messageController.text.trim().isEmpty) return;
+
+    setState(() {
+      _messages.add({
+        'isUser': true,
+        'message': _messageController.text.trim(),
+        'time': DateTime.now(),
+      });
+    });
+
+    // Simulate admin response after a short delay
+    Future.delayed(const Duration(seconds: 1), () {
+      if (!mounted) return;
+
+      setState(() {
+        _messages.add({
+          'isUser': false,
+          'message': _getAutoResponse(_messageController.text.trim()),
+          'time': DateTime.now(),
+        });
+      });
+
+      _scrollToBottom();
+    });
+
+    _messageController.clear();
+    _scrollToBottom();
+  }
+
+  String _getAutoResponse(String message) {
+    message = message.toLowerCase();
+
+    if (message.contains('tent') || message.contains('camping')) {
+      return 'We have a variety of tents available for rent! Our most popular is the Premium Camping Tent which can fit 4 people comfortably. Would you like more information about it?';
+    } else if (message.contains('sleeping') || message.contains('bag')) {
+      return 'Our sleeping bags are rated for different temperatures. For summer camping, I recommend our Ultralight Sleeping Bag. For colder weather, you might want to check out our Winter Sleeping Bag.';
+    } else if (message.contains('price') ||
+        message.contains('cost') ||
+        message.contains('how much')) {
+      return 'Our rental prices vary depending on the item and rental duration. Most tents range from \$25-\$45 per day, with discounts for longer rentals. Is there a specific item you\'re interested in?';
+    } else if (message.contains('hello') ||
+        message.contains('hi') ||
+        message.contains('hey')) {
+      return 'Hi there! How can I assist you with your camping equipment needs today?';
+    } else if (message.contains('thank')) {
+      return 'You\'re welcome! Feel free to ask if you have any other questions.';
+    } else if (message.contains('return') || message.contains('late')) {
+      return 'For returns, you can visit our store during business hours or schedule a pickup. Late returns are subject to additional fees. Would you like me to help you schedule a return?';
+    } else if (message.contains('damage') || message.contains('broken')) {
+      return 'If equipment is damaged, please let us know as soon as possible. Minor wear and tear is expected, but significant damage may incur repair costs. We recommend taking photos of any pre-existing damage when you receive the items.';
+    } else if (message.contains('package') || message.contains('bundle')) {
+      return 'We offer several camping packages that include everything you need for your trip at a discounted price. Our Weekend Camping Package is popular for short trips, while the Family Camping Bundle is great for larger groups. Would you like details on a specific package?';
+    } else if (message.contains('delivery') || message.contains('pickup')) {
+      return 'We offer both pickup at our store and delivery options. Delivery is available within a 30-mile radius for a \$10 fee. Would you like to schedule a delivery or pickup?';
+    } else {
+      return 'Thanks for your message. I\'d be happy to help with your inquiry. Could you provide more details about what camping equipment you\'re looking for?';
+    }
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat'),
+        title: Row(
+          children: [
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/images/admin.jpg'),
+            ),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Camping Expert'),
+                Text(
+                  'Usually responds within 10 minutes',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              // Show info about chat
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('About Customer Support'),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Our customer support is available:',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      Text('• Monday to Friday: 9 AM - 8 PM'),
+                      Text('• Saturday: 10 AM - 6 PM'),
+                      Text('• Sunday: 12 PM - 5 PM'),
+                      const SizedBox(height: 16),
+                      Text(
+                        'For urgent matters outside these hours, please email us at support@campingrental.com',
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Close'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
-      body: const Center(
-        child: Text('Chat Screen Content'),
+      body: Column(
+        children: [
+          // Chat messages
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              padding: const EdgeInsets.all(16),
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final message = _messages[index];
+                return _buildMessageBubble(message, theme);
+              },
+            ),
+          ),
+
+          // Quick Responses
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            color: Colors.grey.shade100,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _buildQuickResponseChip('How do I return items?'),
+                  _buildQuickResponseChip('Package deals?'),
+                  _buildQuickResponseChip('Delivery options?'),
+                  _buildQuickResponseChip('Tent recommendations'),
+                  _buildQuickResponseChip('Pricing information'),
+                ],
+              ),
+            ),
+          ),
+
+          // Input area
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  blurRadius: 10,
+                  offset: const Offset(0, -5),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.attach_file),
+                  onPressed: () {
+                    // Show attachment options
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Container(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ListTile(
+                              leading: const Icon(Icons.photo),
+                              title: const Text('Photo'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:
+                                        Text('Photo attachment coming soon'),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+                              },
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.camera_alt),
+                              title: const Text('Camera'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:
+                                        Text('Camera attachment coming soon'),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+                              },
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.location_on),
+                              title: const Text('Location'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:
+                                        Text('Location attachment coming soon'),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    decoration: InputDecoration(
+                      hintText: 'Type a message...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(24),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey.shade100,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                    ),
+                    textInputAction: TextInputAction.send,
+                    onSubmitted: (_) => _sendMessage(),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                CircleAvatar(
+                  backgroundColor: theme.colorScheme.primary,
+                  child: IconButton(
+                    icon: const Icon(Icons.send, color: Colors.white),
+                    onPressed: _sendMessage,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget _buildQuickResponseChip(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: ActionChip(
+        label: Text(text),
+        onPressed: () {
+          _messageController.text = text;
+          _sendMessage();
+        },
+      ),
+    );
+  }
+
+  Widget _buildMessageBubble(Map<String, dynamic> message, ThemeData theme) {
+    final isUser = message['isUser'] as bool;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Row(
+        mainAxisAlignment:
+            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (!isUser) ...[
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/images/admin.jpg'),
+              radius: 16,
+            ),
+            const SizedBox(width: 8),
+          ],
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: isUser ? theme.colorScheme.primary : Colors.white,
+                borderRadius: BorderRadius.circular(16).copyWith(
+                  bottomLeft: isUser
+                      ? const Radius.circular(16)
+                      : const Radius.circular(0),
+                  bottomRight: isUser
+                      ? const Radius.circular(0)
+                      : const Radius.circular(16),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    message['message'] as String,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: isUser ? Colors.white : Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    _formatTime(message['time'] as DateTime),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: isUser
+                          ? Colors.white.withOpacity(0.7)
+                          : Colors.grey.shade600,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (isUser) const SizedBox(width: 8),
+        ],
+      ),
+    );
+  }
+
+  String _formatTime(DateTime time) {
+    final hour = time.hour.toString().padLeft(2, '0');
+    final minute = time.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
   }
 }
