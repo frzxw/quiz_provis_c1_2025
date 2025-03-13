@@ -151,7 +151,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                'IDR ${widget.item.price.toStringAsFixed(2)}/day',
+                                'Rp${widget.item.price.toStringAsFixed(2)}/day',
                                 style: TextStyle(
                                   decoration: TextDecoration.lineThrough,
                                   color: Colors.grey,
@@ -159,7 +159,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                                 ),
                               ),
                               Text(
-                                'IDR ${widget.item.salePrice!.toStringAsFixed(2)}/day',
+                                'Rp${widget.item.salePrice!.toStringAsFixed(2)}/day',
                                 style: TextStyle(
                                   color: theme.colorScheme.primary,
                                   fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                           )
                         else
                           Text(
-                            'IDR ${widget.item.price.toStringAsFixed(2)}/day',
+                            'Rp${widget.item.price.toStringAsFixed(2)}/day',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,

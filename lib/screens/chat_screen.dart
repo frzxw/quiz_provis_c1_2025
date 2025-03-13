@@ -66,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } else if (message.contains('harga') ||
         message.contains('biaya') ||
         message.contains('berapa')) {
-      return 'Harga sewa kami bervariasi tergantung pada item dan durasi sewa. Sebagian besar tenda berkisar dari IDR 25-IDR 45 per hari, dengan diskon untuk sewa lebih lama. Apakah ada item tertentu yang Anda minati?';
+      return 'Harga sewa kami bervariasi tergantung pada item dan durasi sewa. Sebagian besar tenda berkisar dari Rp25-Rp45 per hari, dengan diskon untuk sewa lebih lama. Apakah ada item tertentu yang Anda minati?';
     } else if (message.contains('halo') ||
         message.contains('hi') ||
         message.contains('hei')) {
@@ -80,7 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } else if (message.contains('paket') || message.contains('bundel')) {
       return 'Kami menawarkan beberapa paket berkemah yang mencakup semua yang Anda butuhkan untuk perjalanan Anda dengan harga diskon. Paket Camping Akhir Pekan kami populer untuk perjalanan singkat, sementara Bundel Camping Keluarga sangat cocok untuk kelompok yang lebih besar. Apakah Anda ingin detail tentang paket tertentu?';
     } else if (message.contains('pengiriman') || message.contains('penjemputan')) {
-      return 'Kami menawarkan opsi penjemputan di toko kami dan pengiriman. Pengiriman tersedia dalam radius 30 mil dengan biaya IDR 10. Apakah Anda ingin menjadwalkan pengiriman atau penjemputan?';
+      return 'Kami menawarkan opsi penjemputan di toko kami dan pengiriman. Pengiriman tersedia dalam radius 30 mil dengan biaya Rp10. Apakah Anda ingin menjadwalkan pengiriman atau penjemputan?';
     } else {
       return 'Terima kasih atas pesan Anda. Saya akan dengan senang hati membantu pertanyaan Anda. Bisakah Anda memberikan lebih banyak detail tentang peralatan berkemah yang Anda cari?';
     }

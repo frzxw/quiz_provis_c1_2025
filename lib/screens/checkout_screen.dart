@@ -159,7 +159,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      '${item.quantity} x IDR ${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
+                                      '${item.quantity} x Rp${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
                                       style: TextStyle(
                                         color: Colors.grey.shade600,
                                         fontSize: 12,
@@ -202,7 +202,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                          'IDR ${widget.subtotal.toStringAsFixed(2)}',
+                          'Rp${widget.subtotal.toStringAsFixed(2)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -216,7 +216,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                          'IDR ${widget.tax.toStringAsFixed(2)}',
+                          'Rp${widget.tax.toStringAsFixed(2)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -230,7 +230,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                          'IDR ${_deliveryFee.toStringAsFixed(2)}',
+                          'Rp${_deliveryFee.toStringAsFixed(2)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -246,7 +246,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                         Text(
-                          'IDR ${(widget.total + _deliveryFee).toStringAsFixed(2)}',
+                          'Rp${(widget.total + _deliveryFee).toStringAsFixed(2)}',
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,
@@ -349,7 +349,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         subtitle: Text(
                           method == 'Pickup'
                               ? 'Pick up at our store (Free)'
-                              : 'Delivery to your address (IDR 10.00)',
+                              : 'Delivery to your address (Rp10.00)',
                         ),
                         value: method,
                         groupValue: _selectedDeliveryMethod,
@@ -635,7 +635,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                           style: theme.textTheme.titleMedium,
                         ),
                         Text(
-                          'IDR ${total.toStringAsFixed(2)}',
+                          'Rp${total.toStringAsFixed(2)}',
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,

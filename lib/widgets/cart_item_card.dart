@@ -59,7 +59,7 @@ class CartItemCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'IDR ${item.price.toStringAsFixed(2)}',
+                              'Rp${item.price.toStringAsFixed(2)}',
                               style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey,
@@ -68,7 +68,7 @@ class CartItemCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              'IDR ${item.salePrice!.toStringAsFixed(2)}/day',
+                              'Rp${item.salePrice!.toStringAsFixed(2)}/day',
                               style: TextStyle(
                                 color: theme.colorScheme.primary,
                                 fontWeight: FontWeight.bold,
@@ -78,7 +78,7 @@ class CartItemCard extends StatelessWidget {
                         )
                       else
                         Text(
-                          'IDR ${item.price.toStringAsFixed(2)}/day',
+                          'Rp${item.price.toStringAsFixed(2)}/day',
                           style: TextStyle(
                             color: theme.colorScheme.primary,
                             fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class CartItemCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'Subtotal: IDR ${cartItem.totalPrice.toStringAsFixed(2)}',
+                  'Rp${cartItem.totalPrice.toStringAsFixed(2)}',
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

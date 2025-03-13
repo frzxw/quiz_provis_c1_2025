@@ -151,7 +151,7 @@ class _CartScreenState extends State<CartScreen> {
                             style: theme.textTheme.bodyLarge,
                           ),
                           Text(
-                            'IDR ${_subtotal.toStringAsFixed(2)}',
+                            'Rp${_subtotal.toStringAsFixed(2)}',
                             style: theme.textTheme.bodyLarge,
                           ),
                         ],
@@ -165,7 +165,7 @@ class _CartScreenState extends State<CartScreen> {
                             style: theme.textTheme.bodyLarge,
                           ),
                           Text(
-                            'IDR ${_tax.toStringAsFixed(2)}',
+                            'Rp${_tax.toStringAsFixed(2)}',
                             style: theme.textTheme.bodyLarge,
                           ),
                         ],
@@ -181,7 +181,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                           Text(
-                            'IDR ${_total.toStringAsFixed(2)}',
+                            'Rp${_total.toStringAsFixed(2)}',
                             style: theme.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.primary,
