@@ -23,10 +23,10 @@ List<Review> getSampleReviews(int itemId) {
   return [
     Review(
       id: 1,
-      userName: 'Alex Johnson',
+      userName: 'Hasbi Altamish',
       userImage: 'assets/images/user1.png',
       rating: 5.0,
-      comment: 'Excellent quality tent! It was easy to set up and kept us dry during a rainy night. Highly recommend for family camping.',
+      comment: 'Kualitas tenda yang sangat baik! Mudah dipasang dan tetap kering selama malam hujan. Sangat direkomendasikan untuk berkemah keluarga.',
       date: DateTime.now().subtract(const Duration(days: 5)),
       images: ['assets/images/review1.png', 'assets/images/review2.png'],
     ),
@@ -35,7 +35,7 @@ List<Review> getSampleReviews(int itemId) {
       userName: 'Sarah Miller',
       userImage: 'assets/images/user2.png',
       rating: 4.5,
-      comment: 'Great product, just as described. Spacious and comfortable. The only minor issue was one of the zippers was a bit stiff.',
+      comment: 'Produk yang bagus, sesuai dengan deskripsi. Luas dan nyaman. Satu-satunya masalah kecil adalah salah satu resletingnya agak kaku.',
       date: DateTime.now().subtract(const Duration(days: 12)),
     ),
     Review(
@@ -43,7 +43,7 @@ List<Review> getSampleReviews(int itemId) {
       userName: 'Michael Chen',
       userImage: 'assets/images/user3.png',
       rating: 4.0,
-      comment: 'Good value for money. The tent is sturdy and well-made. Setup took about 15 minutes the first time.',
+      comment: 'Nilai yang baik untuk uang. Tenda ini kokoh dan dibuat dengan baik. Pemasangan memakan waktu sekitar 15 menit pertama kali.',
       date: DateTime.now().subtract(const Duration(days: 20)),
       images: ['assets/images/review3.png'],
     ),
@@ -52,7 +52,7 @@ List<Review> getSampleReviews(int itemId) {
       userName: 'Emily Wilson',
       userImage: 'assets/images/user4.png',
       rating: 5.0,
-      comment: 'Perfect for our weekend trip! Plenty of room for 4 people and our gear. Will definitely rent again.',
+      comment: 'Sempurna untuk perjalanan akhir pekan kami! Banyak ruang untuk 4 orang dan perlengkapan kami. Pasti akan menyewa lagi.',
       date: DateTime.now().subtract(const Duration(days: 30)),
     ),
   ];
