@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../models/transaction.dart';
 import '../widgets/cart_item_card.dart';
+import 'checkout_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -55,6 +56,20 @@ class _CartScreenState extends State<CartScreen> {
         _cartItems[index].quantity = quantity;
       }
     });
+  }
+
+  void _proceedToCheckout() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CheckoutScreen(
+          cartItems: _cartItems,
+          subtotal: _subtotal,
+          tax: _tax,
+          total: _total,
+        ),
+      ),
+    );
   }
 
   @override
@@ -190,14 +205,7 @@ class _CartScreenState extends State<CartScreen> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Proceeding to checkout...'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          },
+                          onPressed: _proceedToCheckout,
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 16),
                           ),

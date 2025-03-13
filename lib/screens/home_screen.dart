@@ -245,18 +245,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ChatScreen(),
-            ),
-          );
-        },
-        backgroundColor: theme.colorScheme.primary,
-        child: const Icon(Icons.chat, color: Colors.white),
-      ),
     );
   }
 }

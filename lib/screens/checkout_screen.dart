@@ -213,7 +213,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Tax (10%)',
+                          'Tax (11%)',
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(

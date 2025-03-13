@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
+import '../screens/returns_screen.dart';
 
 class TransactionCard extends StatelessWidget {
   final Transaction transaction;
@@ -14,8 +15,7 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dateFormat = DateFormat('MMM dd, yyyy');
-    final numberFormat =
-        NumberFormat('#,##0.00', 'id_ID'); // Format Indonesia (1.234.567,89)
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Card(
       child: Padding(
@@ -113,7 +113,7 @@ class TransactionCard extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${item.quantity} x Rp${numberFormat.format(item.item.isOnSale ? item.item.salePrice : item.item.price)}/day', // Updated line
+                              '${item.quantity} x Rp${numberFormat.format(item.item.isOnSale ? item.item.salePrice : item.item.price)}/day',
                               style: TextStyle(
                                 color: Colors.grey.shade600,
                                 fontSize: 12,
@@ -123,7 +123,7 @@ class TransactionCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Rp${numberFormat.format(item.totalPrice)}', // Updated line
+                        'Rp${numberFormat.format(item.totalPrice)}',
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -145,7 +145,7 @@ class TransactionCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Rp${numberFormat.format(transaction.totalAmount)}', // Updated line
+                  'Rp${numberFormat.format(transaction.totalAmount)}',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.primary,
@@ -188,7 +188,14 @@ class TransactionCard extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Return items
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ReturnsScreen(
+                          transaction: transaction,
+                        ),
+                      ),
+                    );
                   },
                   child: const Text('Return Items'),
                 ),

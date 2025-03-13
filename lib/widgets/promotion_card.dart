@@ -111,20 +111,20 @@ class PromotionCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Rp${numberFormat.format(promotion['originalPrice'])}',
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
                         'Rp${numberFormat.format(promotion['price'])}',
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Rp${numberFormat.format(promotion['originalPrice'])/}',
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.grey,
+                          fontSize: 12,
                         ),
                       ),
                     ],
