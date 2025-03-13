@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../widgets/wishlist_item_card.dart';
 
