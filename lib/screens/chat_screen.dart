@@ -59,30 +59,30 @@ class _ChatScreenState extends State<ChatScreen> {
   String _getAutoResponse(String message) {
     message = message.toLowerCase();
 
-    if (message.contains('tent') || message.contains('camping')) {
-      return 'We have a variety of tents available for rent! Our most popular is the Premium Camping Tent which can fit 4 people comfortably. Would you like more information about it?';
-    } else if (message.contains('sleeping') || message.contains('bag')) {
-      return 'Our sleeping bags are rated for different temperatures. For summer camping, I recommend our Ultralight Sleeping Bag. For colder weather, you might want to check out our Winter Sleeping Bag.';
-    } else if (message.contains('price') ||
-        message.contains('cost') ||
-        message.contains('how much')) {
-      return 'Our rental prices vary depending on the item and rental duration. Most tents range from \$25-\$45 per day, with discounts for longer rentals. Is there a specific item you\'re interested in?';
-    } else if (message.contains('hello') ||
+    if (message.contains('tenda') || message.contains('berkemah')) {
+      return 'Kami memiliki berbagai macam tenda yang tersedia untuk disewa! Yang paling populer adalah Tenda Camping Premium yang dapat menampung 4 orang dengan nyaman. Apakah Anda ingin informasi lebih lanjut tentang itu?';
+    } else if (message.contains('tidur') || message.contains('kantong tidur')) {
+      return 'Kantong tidur kami memiliki rating untuk berbagai suhu. Untuk berkemah di musim panas, saya merekomendasikan Kantong Tidur Ultralight kami. Untuk cuaca yang lebih dingin, Anda mungkin ingin memeriksa Kantong Tidur Musim Dingin kami.';
+    } else if (message.contains('harga') ||
+        message.contains('biaya') ||
+        message.contains('berapa')) {
+      return 'Harga sewa kami bervariasi tergantung pada item dan durasi sewa. Sebagian besar tenda berkisar dari IDR 25-IDR 45 per hari, dengan diskon untuk sewa lebih lama. Apakah ada item tertentu yang Anda minati?';
+    } else if (message.contains('halo') ||
         message.contains('hi') ||
-        message.contains('hey')) {
-      return 'Hi there! How can I assist you with your camping equipment needs today?';
-    } else if (message.contains('thank')) {
-      return 'You\'re welcome! Feel free to ask if you have any other questions.';
-    } else if (message.contains('return') || message.contains('late')) {
-      return 'For returns, you can visit our store during business hours or schedule a pickup. Late returns are subject to additional fees. Would you like me to help you schedule a return?';
-    } else if (message.contains('damage') || message.contains('broken')) {
-      return 'If equipment is damaged, please let us know as soon as possible. Minor wear and tear is expected, but significant damage may incur repair costs. We recommend taking photos of any pre-existing damage when you receive the items.';
-    } else if (message.contains('package') || message.contains('bundle')) {
-      return 'We offer several camping packages that include everything you need for your trip at a discounted price. Our Weekend Camping Package is popular for short trips, while the Family Camping Bundle is great for larger groups. Would you like details on a specific package?';
-    } else if (message.contains('delivery') || message.contains('pickup')) {
-      return 'We offer both pickup at our store and delivery options. Delivery is available within a 30-mile radius for a \$10 fee. Would you like to schedule a delivery or pickup?';
+        message.contains('hei')) {
+      return 'Halo! Bagaimana saya bisa membantu Anda dengan kebutuhan peralatan berkemah Anda hari ini?';
+    } else if (message.contains('terima kasih')) {
+      return 'Sama-sama! Jangan ragu untuk bertanya jika Anda memiliki pertanyaan lain.';
+    } else if (message.contains('kembali') || message.contains('terlambat')) {
+      return 'Untuk pengembalian, Anda dapat mengunjungi toko kami selama jam kerja atau menjadwalkan penjemputan. Pengembalian terlambat dikenakan biaya tambahan. Apakah Anda ingin saya membantu Anda menjadwalkan pengembalian?';
+    } else if (message.contains('kerusakan') || message.contains('rusak')) {
+      return 'Jika peralatan rusak, harap beri tahu kami sesegera mungkin. Kerusakan kecil diharapkan, tetapi kerusakan signifikan mungkin dikenakan biaya perbaikan. Kami merekomendasikan mengambil foto kerusakan yang ada saat Anda menerima barang.';
+    } else if (message.contains('paket') || message.contains('bundel')) {
+      return 'Kami menawarkan beberapa paket berkemah yang mencakup semua yang Anda butuhkan untuk perjalanan Anda dengan harga diskon. Paket Camping Akhir Pekan kami populer untuk perjalanan singkat, sementara Bundel Camping Keluarga sangat cocok untuk kelompok yang lebih besar. Apakah Anda ingin detail tentang paket tertentu?';
+    } else if (message.contains('pengiriman') || message.contains('penjemputan')) {
+      return 'Kami menawarkan opsi penjemputan di toko kami dan pengiriman. Pengiriman tersedia dalam radius 30 mil dengan biaya IDR 10. Apakah Anda ingin menjadwalkan pengiriman atau penjemputan?';
     } else {
-      return 'Thanks for your message. I\'d be happy to help with your inquiry. Could you provide more details about what camping equipment you\'re looking for?';
+      return 'Terima kasih atas pesan Anda. Saya akan dengan senang hati membantu pertanyaan Anda. Bisakah Anda memberikan lebih banyak detail tentang peralatan berkemah yang Anda cari?';
     }
   }
 
