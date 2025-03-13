@@ -76,6 +76,14 @@ flutter:
     - assets/images/promo1.png
     - assets/images/promo2.png
     - assets/images/promo3.png
+    - assets/images/user1.png
+    - assets/images/user2.png
+    - assets/images/user3.png
+    - assets/images/user4.png
+    - assets/images/review1.png
+    - assets/images/review2.png
+    - assets/images/review3.png
+    - assets/images/admin.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

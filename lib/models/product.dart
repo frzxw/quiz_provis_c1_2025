@@ -35,7 +35,7 @@ List<Product> sampleItems = [
     name: 'Tenda Camping Premium',
     description:
         'Tenda luas untuk 4 orang dengan bahan tahan air, sempurna untuk perjalanan camping keluarga. Fitur pemasangan mudah dan ventilasi yang sangat baik.',
-    price: 650000,
+    price: 100000,
     rating: 4.7,
     reviewCount: 128,
     images: [
@@ -58,7 +58,7 @@ List<Product> sampleItems = [
     name: 'Sleeping Bag Ultraringan',
     description:
         'Sleeping bag kompak dan ringan cocok untuk suhu hingga 5°C. Sempurna untuk perjalanan backpacking dan hiking.',
-    price: 350000,
+    price: 30000,
     rating: 4.5,
     reviewCount: 94,
     images: [
@@ -74,14 +74,14 @@ List<Product> sampleItems = [
     },
     isAvailable: true,
     isOnSale: true,
-    salePrice: 280000,
+    salePrice: 25000,
   ),
   Product(
     id: 3,
     name: 'Kompor Camping Portabel',
     description:
         'Kompor gas kompak dengan penyalaan piezo. Ringan dan sempurna untuk memasak makanan selama petualangan camping Anda.',
-    price: 220000,
+    price: 15000,
     rating: 4.3,
     reviewCount: 76,
     images: [
@@ -102,7 +102,7 @@ List<Product> sampleItems = [
     name: 'Lampu Camping LED',
     description:
         'Lampu LED terang dengan 3 mode pencahayaan. Tahan air dan sempurna untuk menerangi lokasi camping Anda.',
-    price: 175000,
+    price: 17500,
     rating: 4.6,
     reviewCount: 112,
     images: [
@@ -124,7 +124,7 @@ List<Product> sampleItems = [
     name: 'Tongkat Trekking',
     description:
         'Tongkat trekking aluminium yang dapat disesuaikan dengan pegangan nyaman. Sempurna untuk perjalanan hiking dan backpacking.',
-    price: 265000,
+    price: 50000,
     rating: 4.4,
     reviewCount: 68,
     images: [
@@ -145,7 +145,7 @@ List<Product> sampleItems = [
     name: 'Kursi Camping',
     description:
         'Kursi lipat nyaman dengan tempat minuman. Ringan dan mudah dibawa ke lokasi camping Anda.',
-    price: 195000,
+    price: 30000,
     rating: 4.2,
     reviewCount: 85,
     images: [
@@ -161,7 +161,7 @@ List<Product> sampleItems = [
     },
     isAvailable: true,
     isOnSale: true,
-    salePrice: 150000,
+    salePrice: 25000,
   ),
 ];
 
@@ -171,8 +171,8 @@ List<Map<String, dynamic>> promotionPackages = [
     'title': 'Paket Camping Akhir Pekan',
     'description':
         'Set lengkap untuk liburan akhir pekan. Termasuk tenda, sleeping bag, dan peralatan memasak.',
-    'price': 1100000,
-    'originalPrice': 1350000,
+    'price': 118000,
+    'originalPrice': 145000,
     'image': 'assets/images/promo1.png',
     'items': [1, 2, 3],
   },
@@ -181,8 +181,8 @@ List<Map<String, dynamic>> promotionPackages = [
     'title': 'Perlengkapan Hiking Esensial',
     'description':
         'Semua yang Anda butuhkan untuk hiking sehari. Termasuk ransel, tongkat trekking, dan filter air.',
-    'price': 650000,
-    'originalPrice': 850000,
+    'price': 60000,
+    'originalPrice': 67500,
     'image': 'assets/images/promo2.png',
     'items': [5, 4],
   },
@@ -191,8 +191,8 @@ List<Map<String, dynamic>> promotionPackages = [
     'title': 'Bundel Camping Keluarga',
     'description':
         'Sempurna untuk perjalanan keluarga. Termasuk tenda besar, 4 sleeping bag, set peralatan masak, dan lampu.',
-    'price': 1750000,
-    'originalPrice': 2100000,
+    'price': 180000,
+    'originalPrice': 197500,
     'image': 'assets/images/promo3.png',
     'items': [1, 2, 3, 4, 6],
   },
