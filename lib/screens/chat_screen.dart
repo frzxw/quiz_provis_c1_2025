@@ -191,11 +191,11 @@ class _ChatScreenState extends State<ChatScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _buildQuickResponseChip('How do I return items?'),
-                  _buildQuickResponseChip('Package deals?'),
-                  _buildQuickResponseChip('Delivery options?'),
-                  _buildQuickResponseChip('Tent recommendations'),
-                  _buildQuickResponseChip('Pricing information'),
+                  _buildQuickResponseChip('Bagaimana Cara saya mengembalikan barang?'),
+                  _buildQuickResponseChip('Ada bundle apa saja ya yang tersedia?'),
+                  _buildQuickResponseChip('Bagaimana cara pemesanan?'),
+                  _buildQuickResponseChip('Ada paket camping keluarga?'),
+                  _buildQuickResponseChip('Berapa harga sewa tenda?'),
                 ],
               ),
             ),
