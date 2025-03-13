@@ -73,7 +73,10 @@ flutter:
     - assets/images/sleeping_bag2.png
     - assets/images/stove1.png
     - assets/images/stove2.png
-    
+    - assets/images/promo1.png
+    - assets/images/promo2.png
+    - assets/images/promo3.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
