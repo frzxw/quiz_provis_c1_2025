@@ -125,7 +125,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Camping Expert',
+                    'Live Assistant',
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontSize: isSmallScreen ? 15 : 16,
                     ),
