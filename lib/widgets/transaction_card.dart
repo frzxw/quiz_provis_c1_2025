@@ -111,7 +111,7 @@ class TransactionCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '${item.quantity} x \$${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
+                          '${item.quantity} x IDR ${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
                           style: TextStyle(
                             color: Colors.grey.shade600,
                             fontSize: 12,
@@ -121,7 +121,7 @@ class TransactionCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$${item.totalPrice.toStringAsFixed(2)}',
+                    'IDR ${item.totalPrice.toStringAsFixed(2)}',
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -143,7 +143,7 @@ class TransactionCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$${transaction.totalAmount.toStringAsFixed(2)}',
+                  'IDR ${transaction.totalAmount.toStringAsFixed(2)}',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.primary,
