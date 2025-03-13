@@ -19,8 +19,6 @@ Proyek ini dikembangkan oleh kelompok 66 sebagai bagian dari tugas Quiz 1 untuk 
 
 Aplikasi **Camping Gear Rental** adalah aplikasi berbasis Flutter yang memungkinkan pengguna untuk menyewa berbagai alat perkemahan dengan mudah. Aplikasi ini memiliki fitur seperti detail item, review dan rating, chat dengan admin, daftar wishlist, keranjang & checkout, promosi, serta daftar transaksi.
 
-Aplikasi ini dikembangkan sebagai bagian dari Quiz 1 untuk kelas Kamis, kelompok 66.
-
 ## 📌 Fitur Utama
 
 ---
@@ -97,7 +95,8 @@ flutter run
 │── /models                  # Model data aplikasi
 │── /providers               # State management
 │── /routes                  # Konfigurasi navigasi
-│── /assets                  # Gambar dan ikon
+/assets                  # Gambar dan ikon
+│── /images # Folder untuk penyimpanan gambar
 ```
 
 ## 📜 Lisensi
