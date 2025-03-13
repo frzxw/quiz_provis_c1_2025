@@ -5,6 +5,7 @@ import 'screens/home_screen.dart';
 import 'screens/wishlist_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/transactions_screen.dart';
+import 'screens/navigation_screen.dart';
 import 'widgets/bottom_navigation.dart';
 
 void main() {
@@ -20,7 +21,20 @@ class MyApp extends StatelessWidget {
       title: 'Camping Rental',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const MainScreen(),
+      home: const NavigationScreen(),
+      routes: {
+        '/home': (context) => const MainScreen(),
+        '/itemDetails': (context) =>
+            const Placeholder(), // Replace with actual screen
+        '/chat': (context) => const ChatScreen(),
+        '/wishlist': (context) => const WishlistScreen(),
+        '/cart': (context) => const CartScreen(),
+        '/packagePurchase': (context) =>
+            const Placeholder(), // Replace with actual screen
+        '/orderMonitoring': (context) => const TransactionsScreen(),
+        '/returns': (context) =>
+            const Placeholder(), // Replace with actual screen
+      },
     );
   }
 }
@@ -56,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
         return Scaffold(
           body: Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 1200),
+              constraints: const BoxConstraints(maxWidth: 1200),
               child: _screens[_selectedIndex],
             ),
           ),

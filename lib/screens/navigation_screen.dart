@@ -6,11 +6,34 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text(
+              'Quiz 1: UI',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Nomor Kelompok Praktikum: 66',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Anggota Kelompok:',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              '1. Fariz Wibisono',
+              style: TextStyle(fontSize: 16),
+            ),
+            const Text(
+              '2. Hasbi Haqqul Fikri',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
@@ -45,13 +68,6 @@ class NavigationScreen extends StatelessWidget {
               },
               child: const Text('Keranjang & Checkout'),
             ),
-            // const SizedBox(height: 20),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/checkout');
-            //   },
-            //   child: const Text('Checkout'),
-            // ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -60,18 +76,35 @@ class NavigationScreen extends StatelessWidget {
               child: const Text('Pembelian Paket'),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/orderMonitoring');
-              },
-              child: const Text('Monitor Pesanan'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/returns');
-              },
-              child: const Text('Pengembalian'),
+            Container(
+              color: Colors.blue[100],
+              padding: const EdgeInsets.all(16),
+              constraints: BoxConstraints(maxWidth: 600),
+              child: Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Transaksi',
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/orderMonitoring');
+                    },
+                    child: const Text('Monitor Pesanan'),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/returns');
+                    },
+                    child: const Text('Pengembalian'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
