@@ -115,7 +115,7 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: const AssetImage('assets/images/admin.png'),
+              backgroundImage: const AssetImage('assets/images/admin.jpg'),
               radius: isSmallScreen ? 16 : 18,
             ),
             SizedBox(width: isSmallScreen ? 8 : 12),
