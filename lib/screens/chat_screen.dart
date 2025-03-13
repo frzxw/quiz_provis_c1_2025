@@ -106,7 +106,6 @@ class _ChatScreenState extends State<ChatScreen> {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     final bool isSmallScreen = size.width < 360;
-    final double avatarSize = isSmallScreen ? 28.0 : 36.0;
     final double horizontalPadding = size.width < 600 ? 12.0 : 16.0;
 
     return Scaffold(
