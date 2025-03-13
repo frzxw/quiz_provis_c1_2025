@@ -14,7 +14,6 @@ class Transaction {
   final List<CartItem> items;
   final DateTime rentalStart;
   final DateTime rentalEnd;
-  final double totalAmount;
   final TransactionStatus status;
   final String? transactionCode;
   final DateTime createdAt;
@@ -24,11 +23,14 @@ class Transaction {
     required this.items,
     required this.rentalStart,
     required this.rentalEnd,
-    required this.totalAmount,
     required this.status,
     this.transactionCode,
     required this.createdAt,
   });
+
+  double get totalAmount {
+    return items.fold(0, (sum, item) => sum + item.totalPrice);
+  }
 }
 
 class CartItem {
@@ -69,7 +71,6 @@ List<Transaction> sampleTransactions = [
     ],
     rentalStart: DateTime.now().add(const Duration(days: 5)),
     rentalEnd: DateTime.now().add(const Duration(days: 8)),
-    totalAmount: 95.0,
     status: TransactionStatus.confirmed,
     transactionCode: 'TRX-12345',
     createdAt: DateTime.now().subtract(const Duration(days: 2)),
@@ -92,7 +93,6 @@ List<Transaction> sampleTransactions = [
     ],
     rentalStart: DateTime.now().subtract(const Duration(days: 3)),
     rentalEnd: DateTime.now().add(const Duration(days: 1)),
-    totalAmount: 27.0,
     status: TransactionStatus.inUse,
     transactionCode: 'TRX-12346',
     createdAt: DateTime.now().subtract(const Duration(days: 5)),
@@ -109,7 +109,6 @@ List<Transaction> sampleTransactions = [
     ],
     rentalStart: DateTime.now().subtract(const Duration(days: 10)),
     rentalEnd: DateTime.now().subtract(const Duration(days: 8)),
-    totalAmount: 36.0,
     status: TransactionStatus.completed,
     transactionCode: 'TRX-12347',
     createdAt: DateTime.now().subtract(const Duration(days: 12)),
@@ -126,7 +125,6 @@ List<Transaction> sampleTransactions = [
     ],
     rentalStart: DateTime.now().subtract(const Duration(days: 15)),
     rentalEnd: DateTime.now().subtract(const Duration(days: 12)),
-    totalAmount: 56.0,
     status: TransactionStatus.completed,
     transactionCode: 'TRX-12348',
     createdAt: DateTime.now().subtract(const Duration(days: 18)),
