@@ -6,11 +6,6 @@ import 'screens/wishlist_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/transactions_screen.dart';
 import 'screens/navigation_screen.dart';
-import 'screens/item_detail_screen.dart';
-import 'screens/returns_screen.dart';
-import 'screens/package_purchase_screen.dart';
-import 'models/product.dart';
-import 'models/transaction.dart';
 import 'widgets/bottom_navigation.dart';
 
 void main() {
@@ -27,19 +22,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const NavigationScreen(),
-      routes: {
-        '/home': (context) => const MainScreen(),
-        '/itemDetails': (context) => ItemDetailScreen(item: sampleItems[0]),
-        '/chat': (context) => const ChatScreen(),
-        '/wishlist': (context) => const WishlistScreen(),
-        '/cart': (context) => const CartScreen(),
-        '/packagePurchase': (context) => PackagePurchaseScreen(
-              package: promotionPackages[0],
-            ),
-        '/orderMonitoring': (context) => const TransactionsScreen(),
-        '/returns': (context) =>
-            ReturnsScreen(transaction: sampleTransactions[0]),
-      },
     );
   }
 }

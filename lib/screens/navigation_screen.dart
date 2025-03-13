@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
+import 'item_detail_screen.dart';
+import 'chat_screen.dart';
+import 'wishlist_screen.dart';
+import 'cart_screen.dart';
+import 'package_purchase_screen.dart';
+import 'order_monitoring_screen.dart';
+import 'returns_screen.dart';
+import '../models/product.dart';
+import '../models/transaction.dart';
 
 class NavigationScreen extends StatelessWidget {
   const NavigationScreen({super.key});
@@ -36,42 +46,51 @@ class NavigationScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen()));
               },
               child: const Text('Halaman Depan'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/itemDetails');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        ItemDetailScreen(item: sampleItems[0])));
               },
               child: const Text('Rincian Item'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/chat');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChatScreen()));
               },
               child: const Text('Chat'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/wishlist');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const WishlistScreen()));
               },
               child: const Text('Wishlist'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/cart');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const CartScreen()));
               },
               child: const Text('Keranjang & Checkout'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/packagePurchase');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PackagePurchaseScreen(
+                          package: promotionPackages[0],
+                        )));
               },
               child: const Text('Pembelian Paket'),
             ),
@@ -92,14 +111,19 @@ class NavigationScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/orderMonitoring');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const OrderMonitoringScreen(
+                              orderNumber: '123456')));
                     },
                     child: const Text('Monitor Pesanan'),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/returns');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ReturnsScreen(
+                                transaction: sampleTransactions[0],
+                              )));
                     },
                     child: const Text('Pengembalian'),
                   ),
