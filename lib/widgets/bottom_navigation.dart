@@ -13,6 +13,8 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSmallScreen = MediaQuery.of(context).size.width < 360;
+
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -38,6 +40,8 @@ class BottomNavigation extends StatelessWidget {
           fontSize: 12,
           fontWeight: FontWeight.w400,
         ),
+        showSelectedLabels: !isSmallScreen,
+        showUnselectedLabels: !isSmallScreen,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
