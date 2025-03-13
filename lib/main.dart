@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_provis_c1_2025/screens/chat_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/wishlist_screen.dart';
 import 'screens/cart_screen.dart';
@@ -101,8 +102,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const WishlistScreen(),
+    const ChatScreen(),
     const CartScreen(),
+    const WishlistScreen(),
     const TransactionsScreen(),
   ];
 
@@ -146,14 +148,19 @@ class _MainScreenState extends State<MainScreen> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border),
-              activeIcon: Icon(Icons.favorite),
-              label: 'Wishlist',
+              icon: Icon(Icons.chat_outlined),
+              activeIcon: Icon(Icons.chat),
+              label: 'Chat',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_outlined),
               activeIcon: Icon(Icons.shopping_cart),
               label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border),
+              activeIcon: Icon(Icons.favorite),
+              label: 'Wishlist',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.receipt_long_outlined),
