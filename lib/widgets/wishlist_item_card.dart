@@ -76,7 +76,7 @@ class WishlistItemCard extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            '\$${item.price.toStringAsFixed(2)}',
+                            'IDR ${item.price.toStringAsFixed(2)}',
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -85,7 +85,7 @@ class WishlistItemCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '\$${item.salePrice!.toStringAsFixed(2)}/day',
+                            'IDR ${item.salePrice!.toStringAsFixed(2)}/day',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class WishlistItemCard extends StatelessWidget {
                       )
                     else
                       Text(
-                        '\$${item.price.toStringAsFixed(2)}/day',
+                        'IDR ${item.price.toStringAsFixed(2)}/day',
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
