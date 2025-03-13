@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../models/review.dart';
 import 'reviews_screen.dart';
@@ -22,6 +23,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final reviews = getSampleReviews(widget.item.id);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Scaffold(
       body: SafeArea(
@@ -151,7 +153,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                'Rp${widget.item.price.toStringAsFixed(2)}/day',
+                                'Rp${numberFormat.format(widget.item.price)}/day',
                                 style: TextStyle(
                                   decoration: TextDecoration.lineThrough,
                                   color: Colors.grey,
@@ -159,7 +161,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                                 ),
                               ),
                               Text(
-                                'Rp${widget.item.salePrice!.toStringAsFixed(2)}/day',
+                                'Rp${numberFormat.format(widget.item.salePrice)}/day',
                                 style: TextStyle(
                                   color: theme.colorScheme.primary,
                                   fontWeight: FontWeight.bold,
@@ -170,7 +172,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                           )
                         else
                           Text(
-                            'Rp${widget.item.price.toStringAsFixed(2)}/day',
+                            'Rp${numberFormat.format(widget.item.price)}/day',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,

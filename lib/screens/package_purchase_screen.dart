@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
 import 'package:intl/intl.dart';
+import '../models/product.dart';
 import 'checkout_screen.dart';
 import '../models/transaction.dart';
 
@@ -94,6 +94,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dateFormat = DateFormat('MMM dd, yyyy');
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(
@@ -159,7 +160,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'Rp${(widget.package['originalPrice'] as double).toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(widget.package['originalPrice'])}',
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -167,7 +168,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
                             ),
                           ),
                           Text(
-                            'Rp${(widget.package['price'] as double).toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(widget.package['price'])}',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -435,7 +436,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  'Rp${item.price.toStringAsFixed(2)}',
+                                  'Rp${numberFormat.format(item.price)}',
                                   style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.grey,

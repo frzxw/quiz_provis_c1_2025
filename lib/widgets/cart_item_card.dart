@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
 import 'package:intl/intl.dart';
+import '../models/transaction.dart';
 
 class CartItemCard extends StatelessWidget {
   final CartItem cartItem;
@@ -19,6 +19,7 @@ class CartItemCard extends StatelessWidget {
     final theme = Theme.of(context);
     final item = cartItem.item;
     final dateFormat = DateFormat('MMM dd, yyyy');
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Card(
       child: Padding(
@@ -60,14 +61,14 @@ class CartItemCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Rp${item.salePrice!.toStringAsFixed(2)}/day',
+                              'Rp${numberFormat.format(item.salePrice)}/day',
                               style: TextStyle(
                                 color: theme.colorScheme.primary,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              'Rp${item.price.toStringAsFixed(2).substring(0, 6)}...',
+                              'Rp${numberFormat.format(item.price)}',
                               style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey,
@@ -78,7 +79,7 @@ class CartItemCard extends StatelessWidget {
                         )
                       else
                         Text(
-                          'Rp${item.price.toStringAsFixed(2)}/day',
+                          'Rp${numberFormat.format(item.price)}/day',
                           style: TextStyle(
                             color: theme.colorScheme.primary,
                             fontWeight: FontWeight.bold,
@@ -159,7 +160,7 @@ class CartItemCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'Rp${cartItem.totalPrice.toStringAsFixed(2)}',
+                  'Rp${numberFormat.format(cartItem.totalPrice)}',
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

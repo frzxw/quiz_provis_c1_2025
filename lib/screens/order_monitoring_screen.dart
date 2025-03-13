@@ -29,8 +29,6 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
   }
 
   Future<void> _loadTransaction() async {
-    // In a real app, this would fetch the transaction from a backend
-    // For demo purposes, we'll use a sample transaction or the provided one
     await Future.delayed(const Duration(seconds: 1));
 
     setState(() {
@@ -42,6 +40,7 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     if (_isLoading) {
       return Scaffold(
@@ -139,7 +138,7 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                               ),
                             ),
                             Text(
-                              'Rp${_transaction.totalAmount.toStringAsFixed(2)}',
+                              'Rp${numberFormat.format(_transaction.totalAmount)}',
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: theme.colorScheme.primary,
@@ -210,14 +209,13 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${item.quantity} x Rp${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
+                              '${item.quantity} x Rp${numberFormat.format(item.item.isOnSale ? item.item.salePrice : item.item.price)}/day',
                               style: theme.textTheme.bodyMedium,
                             ),
                             const SizedBox(height: 8),
                             if (_transaction.status == TransactionStatus.inUse)
                               ElevatedButton(
                                 onPressed: () {
-                                  // Navigate to return screen
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -253,7 +251,6 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Cancel order logic
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Order cancelled successfully'),
@@ -272,7 +269,6 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to return screen
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -290,7 +286,6 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Reorder logic
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Items added to cart'),
@@ -309,7 +304,6 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
               width: double.infinity,
               child: OutlinedButton.icon(
                 onPressed: () {
-                  // Navigate to chat screen
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -331,8 +325,8 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
 
   Widget _buildOrderTimeline(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
-    // Define timeline steps based on order status
     final List<Map<String, dynamic>> steps = [
       {
         'title': 'Order Placed',

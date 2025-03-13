@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../widgets/wishlist_item_card.dart';
 
@@ -10,7 +11,6 @@ class WishlistScreen extends StatefulWidget {
 }
 
 class _WishlistScreenState extends State<WishlistScreen> {
-  // For demo purposes, we'll use a subset of sample items as wishlist
   final List<Product> _wishlistItems = [
     sampleItems[0],
     sampleItems[2],
@@ -21,7 +21,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
     setState(() {
       _wishlistItems.removeWhere((item) => item.id == id);
     });
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Item removed from wishlist'),
@@ -33,7 +33,8 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Wishlist'),
@@ -64,7 +65,6 @@ class _WishlistScreenState extends State<WishlistScreen> {
                   const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: () {
-                      // Navigate to home
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     child: const Text('Browse Items'),
@@ -87,4 +87,3 @@ class _WishlistScreenState extends State<WishlistScreen> {
     );
   }
 }
-

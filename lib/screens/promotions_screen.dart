@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../widgets/promotion_package_card.dart';
 
@@ -131,6 +132,7 @@ class PromotionsScreen extends StatelessWidget {
 
   Widget _buildSaleItemCard(BuildContext context, Product item) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return GestureDetector(
       onTap: () {
@@ -192,7 +194,7 @@ class PromotionsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Rp${item.price.toStringAsFixed(2)}',
+                        'Rp${numberFormat.format(item.price)}',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
@@ -201,7 +203,7 @@ class PromotionsScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Rp${item.salePrice!.toStringAsFixed(2)}',
+                        'Rp${numberFormat.format(item.salePrice)}',
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,

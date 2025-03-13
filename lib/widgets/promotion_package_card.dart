@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/product.dart';
 
 class PromotionPackageCard extends StatelessWidget {
@@ -12,6 +13,7 @@ class PromotionPackageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -113,7 +115,7 @@ class PromotionPackageCard extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Rp${item.price.toStringAsFixed(2)}/day',
+                                  'Rp${numberFormat.format(item.price)}/day',
                                   style: TextStyle(
                                     color: Colors.grey.shade600,
                                     fontSize: 12,
@@ -137,7 +139,7 @@ class PromotionPackageCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Rp${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
+                          'Rp${numberFormat.format(promotion['originalPrice'])}',
                           style: TextStyle(
                             decoration: TextDecoration.lineThrough,
                             color: Colors.grey,
@@ -146,7 +148,7 @@ class PromotionPackageCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Rp${(promotion['price'] as double).toStringAsFixed(2)}',
+                          'Rp${numberFormat.format(promotion['price'])}',
                           style: TextStyle(
                             color: theme.colorScheme.primary,
                             fontWeight: FontWeight.bold,

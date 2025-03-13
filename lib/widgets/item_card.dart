@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../screens/item_detail_screen.dart';
 import 'rating_stars.dart';
@@ -14,6 +15,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return GestureDetector(
       onTap: () {
@@ -121,7 +123,7 @@ class ItemCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Rp${item.price.toStringAsFixed(2).substring(0, 6)}...',
+                            'Rp${numberFormat.format(item.price)}',
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -130,7 +132,7 @@ class ItemCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Rp${item.salePrice!.toStringAsFixed(2)}/day',
+                            'Rp${numberFormat.format(item.salePrice)}/day',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -140,7 +142,7 @@ class ItemCard extends StatelessWidget {
                       )
                     else
                       Text(
-                        'Rp${item.price.toStringAsFixed(2)}/day',
+                        'Rp${numberFormat.format(item.price)}/day',
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,

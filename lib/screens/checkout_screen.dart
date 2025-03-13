@@ -105,6 +105,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dateFormat = DateFormat('MMM dd, yyyy');
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(
@@ -159,7 +160,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      '${item.quantity} x Rp${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
+                                      '${item.quantity} x Rp${numberFormat.format(item.item.isOnSale ? item.item.salePrice : item.item.price)}/day',
                                       style: TextStyle(
                                         color: Colors.grey.shade600,
                                         fontSize: 12,
@@ -202,7 +203,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                          'Rp${widget.subtotal.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(widget.subtotal)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -216,7 +217,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                          'Rp${widget.tax.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(widget.tax)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -230,7 +231,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: theme.textTheme.bodyLarge,
                         ),
                         Text(
-                          'Rp${_deliveryFee.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(_deliveryFee)}',
                           style: theme.textTheme.bodyLarge,
                         ),
                       ],
@@ -246,7 +247,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                         Text(
-                          'Rp${(widget.total + _deliveryFee).toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(widget.total + _deliveryFee)}',
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,
@@ -565,6 +566,7 @@ class OrderConfirmationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(
@@ -635,7 +637,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                           style: theme.textTheme.titleMedium,
                         ),
                         Text(
-                          'Rp${total.toStringAsFixed(2)}',
+                          'Rp${numberFormat.format(total)}',
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,

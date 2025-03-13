@@ -1,5 +1,6 @@
-import '../models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import '../models/product.dart';
 import '../models/transaction.dart';
 import '../widgets/cart_item_card.dart';
 
@@ -11,7 +12,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  // For demo purposes, we'll create some cart items
   final List<CartItem> _cartItems = [
     CartItem(
       item: sampleItems[0],
@@ -32,7 +32,7 @@ class _CartScreenState extends State<CartScreen> {
         (sum, item) => sum + item.totalPrice,
       );
 
-  double get _tax => _subtotal * 0.11; // 10% tax
+  double get _tax => _subtotal * 0.11;
   double get _total => _subtotal + _tax;
 
   void _removeItem(int id) {
@@ -60,6 +60,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat = NumberFormat('#,##0.00', 'id_ID');
 
     return Scaffold(
       appBar: AppBar(
@@ -91,7 +92,6 @@ class _CartScreenState extends State<CartScreen> {
                   const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: () {
-                      // Navigate to home
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     child: const Text('Browse Items'),
@@ -101,7 +101,6 @@ class _CartScreenState extends State<CartScreen> {
             )
           : Column(
               children: [
-                // Cart items list
                 Expanded(
                   child: ListView.separated(
                     padding: const EdgeInsets.all(16),
@@ -119,8 +118,6 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                 ),
-
-                // Order summary
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -151,7 +148,7 @@ class _CartScreenState extends State<CartScreen> {
                             style: theme.textTheme.bodyLarge,
                           ),
                           Text(
-                            'Rp${_subtotal.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(_subtotal)}',
                             style: theme.textTheme.bodyLarge,
                           ),
                         ],
@@ -165,7 +162,7 @@ class _CartScreenState extends State<CartScreen> {
                             style: theme.textTheme.bodyLarge,
                           ),
                           Text(
-                            'Rp${_tax.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(_tax)}',
                             style: theme.textTheme.bodyLarge,
                           ),
                         ],
@@ -181,7 +178,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                           Text(
-                            'Rp${_total.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(_total)}',
                             style: theme.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.primary,
@@ -194,7 +191,6 @@ class _CartScreenState extends State<CartScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Proceed to checkout
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Proceeding to checkout...'),

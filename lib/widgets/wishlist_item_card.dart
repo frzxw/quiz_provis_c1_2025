@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/product.dart';
 import '../screens/item_detail_screen.dart';
 import 'rating_stars.dart';
@@ -16,6 +17,8 @@ class WishlistItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final numberFormat =
+        NumberFormat('#,##0.00', 'id_ID'); // Indonesia format (1.234.567,89)
 
     return GestureDetector(
       onTap: () {
@@ -91,7 +94,7 @@ class WishlistItemCard extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'Rp${item.price.toStringAsFixed(2)}',
+                            'Rp${numberFormat.format(item.price)}', // Updated line
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -100,7 +103,7 @@ class WishlistItemCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            'Rp${item.salePrice!.toStringAsFixed(2)}/day',
+                            'Rp${numberFormat.format(item.salePrice)}/day', // Updated line
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -110,7 +113,7 @@ class WishlistItemCard extends StatelessWidget {
                       )
                     else
                       Text(
-                        'Rp${item.price.toStringAsFixed(2)}/day',
+                        'Rp${numberFormat.format(item.price)}/day', // Updated line
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
