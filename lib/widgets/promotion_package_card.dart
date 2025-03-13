@@ -112,7 +112,7 @@ class PromotionPackageCard extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'IDR ${item.price.toStringAsFixed(2)}/day',
+                                  'Rp${item.price.toStringAsFixed(2)}/day',
                                   style: TextStyle(
                                     color: Colors.grey.shade600,
                                     fontSize: 12,
@@ -142,7 +142,7 @@ class PromotionPackageCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'IDR ${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
+                              'Rp${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
                               style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey,
@@ -151,7 +151,7 @@ class PromotionPackageCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'IDR ${(promotion['price'] as double).toStringAsFixed(2)}',
+                              'Rp${(promotion['price'] as double).toStringAsFixed(2)}',
                               style: TextStyle(
                                 color: theme.colorScheme.primary,
                                 fontWeight: FontWeight.bold,

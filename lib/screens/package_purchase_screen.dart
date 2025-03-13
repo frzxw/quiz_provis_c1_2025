@@ -159,7 +159,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'IDR ${(widget.package['originalPrice'] as double).toStringAsFixed(2)}',
+                            'Rp${(widget.package['originalPrice'] as double).toStringAsFixed(2)}',
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -167,7 +167,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
                             ),
                           ),
                           Text(
-                            'IDR ${(widget.package['price'] as double).toStringAsFixed(2)}',
+                            'Rp${(widget.package['price'] as double).toStringAsFixed(2)}',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -435,7 +435,7 @@ class _PackagePurchaseScreenState extends State<PackagePurchaseScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  'IDR ${item.price.toStringAsFixed(2)}',
+                                  'Rp${item.price.toStringAsFixed(2)}',
                                   style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.grey,

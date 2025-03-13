@@ -109,7 +109,7 @@ class PromotionCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'IDR ${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
+                        'Rp${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
@@ -118,7 +118,7 @@ class PromotionCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        'IDR ${(promotion['price'] as double).toStringAsFixed(2)}',
+                        'Rp${(promotion['price'] as double).toStringAsFixed(2)}',
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,

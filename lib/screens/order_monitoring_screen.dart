@@ -139,7 +139,7 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                               ),
                             ),
                             Text(
-                              'IDR ${_transaction.totalAmount.toStringAsFixed(2)}',
+                              'Rp${_transaction.totalAmount.toStringAsFixed(2)}',
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: theme.colorScheme.primary,
@@ -210,7 +210,7 @@ class _OrderMonitoringScreenState extends State<OrderMonitoringScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${item.quantity} x IDR ${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
+                              '${item.quantity} x Rp${item.item.isOnSale ? item.item.salePrice!.toStringAsFixed(2) : item.item.price.toStringAsFixed(2)}/day',
                               style: theme.textTheme.bodyMedium,
                             ),
                             const SizedBox(height: 8),

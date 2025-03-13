@@ -192,7 +192,7 @@ class PromotionsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'IDR ${item.price.toStringAsFixed(2)}',
+                        'Rp${item.price.toStringAsFixed(2)}',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
@@ -201,7 +201,7 @@ class PromotionsScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'IDR ${item.salePrice!.toStringAsFixed(2)}',
+                        'Rp${item.salePrice!.toStringAsFixed(2)}',
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
