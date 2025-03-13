@@ -120,7 +120,7 @@ class PromotionCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        'Rp${numberFormat.format(promotion['originalPrice'])/}',
+                        'Rp${numberFormat.format(promotion['originalPrice'])}',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
