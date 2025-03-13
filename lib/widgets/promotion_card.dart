@@ -23,7 +23,7 @@ class PromotionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withAlpha(13),
               blurRadius: 10,
               offset: const Offset(0, 2),
             ),
@@ -52,13 +52,13 @@ class PromotionCard extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black.withOpacity(0.5),
+                          Colors.black.withAlpha(128),
                         ],
                       ),
                     ),
                   ),
                   Positioned(
-                    bottom: 8,
+                    bottom: 16,
                     left: 8,
                     child: Container(
                       padding: const EdgeInsets.symmetric(

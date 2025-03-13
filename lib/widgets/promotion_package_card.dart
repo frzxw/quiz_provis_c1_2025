@@ -12,7 +12,7 @@ class PromotionPackageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Column(
@@ -52,7 +52,7 @@ class PromotionPackageCard extends StatelessWidget {
               ),
             ],
           ),
-          
+
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -70,7 +70,7 @@ class PromotionPackageCard extends StatelessWidget {
                   style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 16),
-                
+
                 // Included items
                 Text(
                   'Included Items:',
@@ -79,13 +79,14 @@ class PromotionPackageCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                
+
                 ...List.generate(
                   (promotion['items'] as List).length,
                   (index) {
                     final itemId = (promotion['items'] as List)[index] as int;
-                    final item = sampleItems.firstWhere((item) => item.id == itemId);
-                    
+                    final item =
+                        sampleItems.firstWhere((item) => item.id == itemId);
+
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Row(
@@ -126,9 +127,9 @@ class PromotionPackageCard extends StatelessWidget {
                     );
                   },
                 ),
-                
+
                 const Divider(height: 24),
-                
+
                 // Price and button
                 Row(
                   children: [
@@ -136,29 +137,21 @@ class PromotionPackageCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Package Price:',
-                          style: theme.textTheme.bodyMedium,
+                          'Rp${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
+                          style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.grey,
+                            fontSize: 14,
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Rp${(promotion['originalPrice'] as double).toStringAsFixed(2)}',
-                              style: TextStyle(
-                                decoration: TextDecoration.lineThrough,
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Rp${(promotion['price'] as double).toStringAsFixed(2)}',
-                              style: TextStyle(
-                                color: theme.colorScheme.primary,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ],
+                        const SizedBox(height: 4),
+                        Text(
+                          'Rp${(promotion['price'] as double).toStringAsFixed(2)}',
+                          style: TextStyle(
+                            color: theme.colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
                       ],
                     ),
@@ -185,4 +178,3 @@ class PromotionPackageCard extends StatelessWidget {
     );
   }
 }
-

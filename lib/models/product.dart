@@ -121,7 +121,7 @@ List<Product> sampleItems = [
   ),
   Product(
     id: 5,
-    name: 'Tongkat Trekking (Sepasang)',
+    name: 'Tongkat Trekking',
     description:
         'Tongkat trekking aluminium yang dapat disesuaikan dengan pegangan nyaman. Sempurna untuk perjalanan hiking dan backpacking.',
     price: 265000,

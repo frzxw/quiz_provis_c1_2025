@@ -49,13 +49,28 @@ class WishlistItemCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      item.name,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            item.name,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: const Icon(Icons.delete_outline),
+                            onPressed: onRemove,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 4),
                     Row(
@@ -102,35 +117,6 @@ class WishlistItemCard extends StatelessWidget {
                         ),
                       ),
                     const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add to cart
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Added to cart'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
-                            ),
-                            textStyle: const TextStyle(fontSize: 12),
-                          ),
-                          child: const Text('Add to Cart'),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete_outline),
-                          onPressed: onRemove,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),

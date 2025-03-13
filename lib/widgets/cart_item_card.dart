@@ -57,21 +57,21 @@ class CartItemCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       if (item.isOnSale)
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Rp${item.price.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                decoration: TextDecoration.lineThrough,
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
                             Text(
                               'Rp${item.salePrice!.toStringAsFixed(2)}/day',
                               style: TextStyle(
                                 color: theme.colorScheme.primary,
                                 fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Rp${item.price.toStringAsFixed(2).substring(0, 6)}...',
+                              style: TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                                color: Colors.grey,
+                                fontSize: 12,
                               ),
                             ),
                           ],
