@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/product.dart';
+import '../screens/package_purchase_screen.dart';
 
 class PromotionPackageCard extends StatelessWidget {
   final Map<String, dynamic> promotion;
@@ -160,15 +161,17 @@ class PromotionPackageCard extends StatelessWidget {
                     const Spacer(),
                     ElevatedButton(
                       onPressed: () {
-                        // Add package to cart
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Package added to cart'),
-                            duration: Duration(seconds: 2),
+                        // Navigate to PackagePurchaseScreen with the current package
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PackagePurchaseScreen(
+                              package: promotion,
+                            ),
                           ),
                         );
                       },
-                      child: const Text('Add to Cart'),
+                      child: const Text('View Package'),
                     ),
                   ],
                 ),
