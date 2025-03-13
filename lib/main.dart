@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_provis_c1_2025/utils/app_theme.dart';
-import 'package:quiz_provis_c1_2025/screens/chat_screen.dart';
+import '../utils/app_theme.dart';
+import '../screens/chat_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/wishlist_screen.dart';
 import 'screens/cart_screen.dart';
@@ -51,12 +51,21 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigation(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Scaffold(
+          body: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 1200),
+              child: _screens[_selectedIndex],
+            ),
+          ),
+          bottomNavigationBar: BottomNavigation(
+            selectedIndex: _selectedIndex,
+            onItemTapped: _onItemTapped,
+          ),
+        );
+      },
     );
   }
 }

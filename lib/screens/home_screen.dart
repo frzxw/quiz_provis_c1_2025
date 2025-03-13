@@ -24,6 +24,26 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+
+    // Responsive values based on screen size
+    final bool isTabletOrLarger = size.width >= 600;
+    final bool isDesktop = size.width >= 1024;
+
+    // Dynamic grid columns based on screen width
+    int gridColumns = 2;
+    if (isDesktop) {
+      gridColumns = 4;
+    } else if (isTabletOrLarger) {
+      gridColumns = 3;
+    }
+
+    // Responsive padding that scales with screen size but has min/max bounds
+    final double basePadding = size.width * 0.04; // 4% of screen width
+    final double horizontalPadding = basePadding.clamp(12.0, 24.0);
+
+    // Responsive aspect ratio for item cards
+    final double itemAspectRatio = isTabletOrLarger ? 0.7 : 0.6;
 
     return Scaffold(
       body: SafeArea(
@@ -32,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // App Bar with Search
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(horizontalPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -45,11 +65,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 'Hello, Adventurer!',
                                 style: theme.textTheme.bodyLarge,
+                                overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 'Find Your Gear',
                                 style: theme.textTheme.displayLarge,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
@@ -59,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {},
                           iconSize: 28,
                         ),
+                        const SizedBox(width: 8),
                         const CircleAvatar(
                           radius: 20,
                           backgroundImage:
@@ -66,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: size.height * 0.02),
                     TextField(
                       controller: _searchController,
                       decoration: InputDecoration(
@@ -89,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Categories
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -97,57 +120,62 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Categories',
                       style: theme.textTheme.displayMedium,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: size.height * 0.015),
                   ],
                 ),
               ),
             ),
 
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 120,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  children: [
-                    CategoryCard(
-                      icon: Icons.cabin,
-                      title: 'Tents',
-                      color: Color(0xFF4CAF50),
-                    ),
-                    SizedBox(width: 12),
-                    CategoryCard(
-                      icon: Icons.hotel,
-                      title: 'Sleeping',
-                      color: Color(0xFF795548),
-                    ),
-                    SizedBox(width: 12),
-                    CategoryCard(
-                      icon: Icons.outdoor_grill,
-                      title: 'Cooking',
-                      color: Color(0xFFFF9800),
-                    ),
-                    SizedBox(width: 12),
-                    CategoryCard(
-                      icon: Icons.backpack,
-                      title: 'Backpacks',
-                      color: Color(0xFF2196F3),
-                    ),
-                    SizedBox(width: 12),
-                    CategoryCard(
-                      icon: Icons.hiking,
-                      title: 'Hiking',
-                      color: Color(0xFF9C27B0),
-                    ),
-                  ],
-                ),
-              ),
+              child: LayoutBuilder(builder: (context, constraints) {
+                // Responsive height based on screen width
+                final categoryHeight = size.width * 0.25;
+                return SizedBox(
+                  height: categoryHeight.clamp(100.0, 150.0),
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: horizontalPadding),
+                    children: [
+                      CategoryCard(
+                        icon: Icons.cabin,
+                        title: 'Tents',
+                        color: Color(0xFF4CAF50),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.hotel,
+                        title: 'Sleeping',
+                        color: Color(0xFF795548),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.outdoor_grill,
+                        title: 'Cooking',
+                        color: Color(0xFFFF9800),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.backpack,
+                        title: 'Backpacks',
+                        color: Color(0xFF2196F3),
+                      ),
+                      SizedBox(width: horizontalPadding * 0.75),
+                      CategoryCard(
+                        icon: Icons.hiking,
+                        title: 'Hiking',
+                        color: Color(0xFF9C27B0),
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ),
 
             // Special Offers
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(horizontalPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -177,35 +205,40 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: size.height * 0.015),
                   ],
                 ),
               ),
             ),
 
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 235,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  itemCount: promotionPackages.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: PromotionCard(
-                        promotion: promotionPackages[index],
-                      ),
-                    );
-                  },
-                ),
-              ),
+              child: LayoutBuilder(builder: (context, constraints) {
+                // Responsive promotion card height
+                final promotionHeight = size.width * 0.45;
+                return SizedBox(
+                  height: promotionHeight.clamp(180.0, 300.0),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: horizontalPadding),
+                    itemCount: promotionPackages.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: horizontalPadding),
+                        child: PromotionCard(
+                          promotion: promotionPackages[index],
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }),
             ),
 
             // Popular Items
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(horizontalPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -213,20 +246,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Popular Items',
                       style: theme.textTheme.displayMedium,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: size.height * 0.015),
                   ],
                 ),
               ),
             ),
 
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.5,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: gridColumns,
+                  childAspectRatio: itemAspectRatio,
+                  crossAxisSpacing: horizontalPadding * 0.8,
+                  mainAxisSpacing: horizontalPadding * 0.8,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -238,8 +271,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            const SliverPadding(
-              padding: EdgeInsets.only(bottom: 16.0),
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: horizontalPadding),
             ),
           ],
         ),
